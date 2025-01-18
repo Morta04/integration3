@@ -1,7 +1,12 @@
 @font-face{
   font-family: RoxboroughCF;
-  src: url(../public/RoxboroughCF/RoxboroughCF-Regular.woff);
+  src: url(../src/RoxboroughCF/RoxboroughCF-Regular.woff);
   font-size: 400;
+}
+
+@font-face{
+  font-family: Abhaya-libre;
+  src: url(../src/abhaya-libre/AbhayaLibre-SemiBold.woff)
 }
 
 html {
@@ -9,7 +14,6 @@ html {
   margin: 0;
   width: 100%;
   height: 100%;
-
 }
 
 *,
@@ -20,6 +24,9 @@ html {
 
 :root {
   --colour-bg: #FFEECD;
+  --second-bg: #000000;
+  --third-bg: #FFE2A8;
+  --third-color: #B20C3B;
 }
 
 body{
@@ -28,6 +35,234 @@ body{
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: var(--colour-bg);
+}
+
+@media (min-width: 390px){
+  nav{
+    visibility: hidden;
+  }
+}
+
+section{
+  display: flex;
+  flex-direction: column;
+}
+
+h1{
+  font-family: RoxboroughCF;
+  font-size: 8em;
+  text-align: center;
+}
+
+.logo {
+  width: 20%;
+  margin: 4em;
+}
+
+.hero-image_image{
+  width: 80%;
+  align-self: center;
+}
+
+.second-line{
+  color: var(--third-color);
+  margin-left: 2em;
+}
+
+h2{
+  font-size: 4em;
+}
+
+.hero-image_intro{
+  font-family: RoxboroughCF;
+  margin-left: 2em;
+  margin-right: 2em;
+  text-align: center;
+}
+
+.first-section_title{
+  margin-bottom: 0.25em;
+}
+
+.first-section_headline{
+  margin-right: 1em;
+  margin-left: 1em;
+}
+
+p{
+  font-size: 4em;
+  margin-left: 1em;
+  margin-right: 1em;
+  font-family: Abhaya-libre;
+}
+
+.timeline-card1{
+  width: 90%;
+  align-self: center;
+}
+
+.first-section_france{
+  width: 60%;
+  margin-top: 5em;
+  margin-right: 4em;
+  align-self: flex-end;
+}
+
+.first-section_text2,
+.first-section_text3{
+  width: 14em;
+  align-self: flex-end;
+}
+
+.first-section_antwerp{
+  width: 90%;
+  align-self: flex-end;
+}
+
+.map-interaction_icon{
+  width: 15%;
+}
+
+.map-interaction{
+  width: 85%;
+  align-self: center;
+}
+
+.second-section{
+  background-color: var(--second-bg);
+}
+
+.second-section_title{
   color: var(--colour-bg);
 }
 
+.second-section_plantin{
+  margin-left: 5em;
+  margin-top: -4em;
+  width: 95%;
+}
+
+.second-section_dagger{
+  width: 50%;
+  margin-top: -10em;
+}
+
+.second-section_headline{
+  width: 14em;
+  align-self: center;
+  color: var(--colour-bg);
+}
+
+.second-section_text1{
+  width: 14em;
+  align-self: center;
+  color: var(--colour-bg);
+}
+
+.second-section_print{
+  width: 90%;
+  align-self: center;
+}
+
+.second-section_text2,
+.second-section_text3,
+.second-section_text4,
+.second-section_text5,
+.second-section_text6,
+.second-section_text7,
+.second-section_text8,
+.second-section_text9{
+  width: 14em;
+  align-self: center;
+  color: var(--colour-bg);
+}
+
+.second-section_philip{
+  width: 60%;
+  margin-left: 5em;
+}
+
+.second-section_heresy{
+  width: 80%;
+  margin-top: -40em;
+}
+
+.second-section_hands{
+  width: 90%;
+  align-self: center;
+}
+
+.second-section_stronghold{
+  width: 70%;
+  align-self: center;
+}
+
+.third-section_headline,
+.third-section_text1,
+.third-section_text2,
+.third-section_text3,
+.third-section_text4,
+.third-section_text5{
+  width: 14em;
+  align-self: center;
+}
+
+.third-section_biblia{
+  width: 50%;
+  margin-left: 5em;
+}
+
+.third-section_siege{
+  margin-top: -40em;
+}
+
+.third-section_leiden{
+  width: 80%;
+  align-self: center;
+}
+
+.fourth-section{
+  background-color: var(--third-bg);
+}
+
+.fourth-section_lilies{
+  width: 70%;
+  align-self: center;
+}
+
+.fourth-section_text2{
+  align-self: center;
+  font-weight: bold;
+  text-align: center;
+}
+
+.fourth-section_moretus{
+  width: 80%;
+  align-self: center;
+}
+
+.fourth-section_text3{
+  font-size: 5em;
+  text-align: center;
+  align-self: center;
+  font-weight: bold;
+}
+
+button{
+  font-size: 5em;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-radius: 10px;
+  align-self: center;
+  color: var(--colour-bg);
+  background-color: var(--third-color);
+}
+
+.button-museum{
+  width: 10em;
+}
+
+.button-newsletter{
+  width: 11em;
+}
