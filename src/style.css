@@ -253,7 +253,7 @@ button{
   font-size: 5em;
   padding-top: 40px;
   padding-bottom: 40px;
-  border-radius: 10px;
+  border-radius: 40px;
   align-self: center;
   color: var(--colour-bg);
   background-color: var(--third-color);
@@ -265,4 +265,107 @@ button{
 
 .button-newsletter{
   width: 11em;
+  margin-bottom: 2em;
+}
+
+footer{
+  background-color: var(--third-color);
+  padding-top: 3em;
+}
+
+.footer-title{
+  font-family: RoxboroughCF;
+  color: var(--colour-bg);
+  font-size: 4.5em;
+  margin-left: 1em;
+}
+
+.footer-info{
+  font-size: 4em;
+  margin-left: 0.5em;
+  color: var(--colour-bg);
+}
+
+li{
+  list-style: none;
+}
+
+.footer-subheader{
+  font-family: RoxboroughCF;
+  color: var(--colour-bg);
+  font-size: 4em;
+  margin-left: 1.2em;
+}
+
+.footer-icons{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-left: -10em;
+}
+
+.icon1,
+.icon5{
+  width: 300%;
+  background-color: var(--colour-bg);
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-radius: 10em;
+}
+
+.icon2{
+  width: 300%;
+  background-color: var(--colour-bg);
+  padding: 10px;
+  border-radius: 10em;
+}
+
+.icon3{
+  width: 300%;
+  background-color: var(--colour-bg);
+  padding: 0.5em;
+  border-radius: 10em;
+}
+
+.icon4{
+  width: 300%;
+  background-color: var(--colour-bg);
+  padding: 0.7em;
+  border-radius: 10em;
+}
+
+.icon6{
+  width: 300%;
+  background-color: var(--colour-bg);
+  padding: 0.8em;
+  border-radius: 10em;
+}
+
+.footer-settings{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 4em;
+  font-family: RoxboroughCF;
+  color: var(--colour-bg);
+}
+
+.cookie,
+.accessibility,
+.condition,
+.manage{
+  border-left: var(--second-bg);
+  border-left-width: 5px;
+  border-left-style: solid;
+  padding-left: 1em;
+  margin-right: -10px;
+}
+
+.privacy{
+  padding-left: 1em;
 }
