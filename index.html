@@ -1,102 +1,367 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Opportunist first, printer second</title>
     <link rel="stylesheet" href="./src/style.css">
+    <link rel="stylesheet" href="./src/normalize.css">
   </head>
   <body>
     <section class="hero-image">
-      <img class="logo" src="./src/assets/desktop/MPM_logo_grijs_invers.jpg">
-        <nav>
-          <a href="">Who is Plantin?</a>
-          <a href="">Struggle to keep afloat</a>
-          <a href="">Staying alive</a>
-          <a href="">Epilogue</a>
-          <a href="">Other stories</a>
+      <header>
+        <picture class="logo">
+          <source sizes="(min-width: 390px) 20vw,
+              (min-width: 1512px) 20vw"
+            srcset="./src/assets/img/logo/MPM_logo_grijs_invers_frwdit_c_scale,w_200.avif 200w,
+              ./src/assets/img/logo/MPM_logo_grijs_invers_frwdit_c_scale,w_1200.avif 1200w"
+            type="image/avif">
+          <img sizes="(min-width: 390px) 20vw,
+              (min-width: 1512px) 20vw"
+            srcset="./src/assets/img/logo/MPM_logo_grijs_invers_zfpzts_c_scale,w_200.webp 200w,
+              ./src/assets/img/logo/MPM_logo_grijs_invers_zfpzts_c_scale,w_944.webp 944w,
+              ./src/assets/img/logo/MPM_logo_grijs_invers_zfpzts_c_scale,w_1200.webp 1200w"
+            src="./src/assets/img/logo/MPM_logo_grijs_invers.webp" alt="logo">
+        </picture>
+        <nav class="navbar">
+          <div class="menu-toggle" id="menu-toggle">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+          <ul class="navigation" id="navigation">
+            <li><a href="#first-section">Who is Plantin?</a></li>
+            <li><a href="#second-section">Struggle to keep afloat</a></li>
+            <li><a href="#third-section">Staying alive</a></li>
+            <li><a href="#fourth-section">Epilogue</a></li>
+            <li><a href="#fourth-section_title2">Other stories</a></li>
+          </ul>
         </nav>
-        <h1 class="hero-image_title">Opportunist first, <a class="second-line">printer second</a></h1>
-        <img class="hero-image_image" src="./src/assets/mobile/heroCollage-mobile.png">
+      </header>
+        <h1 class="hero-image_title"><a class="first-line">Opportunist first,</a> <a class="second-line">printer second</a></h1>
+          <picture class="hero-image_image">
+            <source sizes="(min-width: 390px) 80vw,
+                (min-width: 768px) 80vw,
+                (min-width: 1512px) 80vw" 
+              srcset="./src/assets/img/hero/heroCollage-mobile.avif" type="image/avif">
+            <img sizes="(min-width: 390px) 80vw,
+                (min-width: 768px) 80vw,
+                (min-width: 1512px) 80vw"
+              src="./src/assets/img/logo/heroCollage-mobile.png" alt="hero image">
+          </picture>
         <h2 class="hero-image_intro">The story of Christophe Plantin - a 16th century printer that went against the religious wars of his time to spread
         knowledge around the world.</h2>
     </section>
-    <section class="first-section">
+    <section class="first-section" id="first-section">
       <h1 class="first-section_title">Who is Plantin?</h1>
       <h2 class="first-section_headline"><strong>C</strong>hristophe Plantin was born around 1520 in Saint-Avertin, France. Plantin started his journey by being a book binding
       apprentice.</h2>
       <p class="first-section_text1">After his apprenticeship he <strong>studied in Paris</strong>, where he learned 6-7 languages, which resulted in him coming to the
       realisation that the <strong>best way to teach people</strong> was by reading books, but mass <strong>manufacturing of books wasn’t as easy</strong> as it
       is today.</p>
-      <img class="timeline-card1" src="./src/assets/mobile/franceCollage-timeline_mobile.png">
-      <img class="first-section_france" src="./src/assets/mobile/franceCollage-mobile.png">
+      <picture class="timeline-card1">
+        <source sizes="(min-width: 390px) 80vw,
+            (min-width: 768px) 80vw,
+            (min-width: 1512px) 80vw" 
+          srcset=".src/assets/img/franceCollage/franceCollage-desktop_m00r0z_c_scale,w_200.avif 200w,
+            ./src/assets/img/franceCollage/franceCollage-timeline_kfcueh_c_scale,w_401.avif 401w" type="image/avif">
+        <img sizes="(min-width: 390px) 80vw,
+            (min-width: 768px) 80vw,
+            (min-width: 1512px) 80vw" 
+          srcset="./src/assets/img/franceCollage/franceCollage-timeline_hxbavt_c_scale,w_200.png 200w,
+            ./src/assets/img/franceCollage/franceCollage-timeline_hxbavt_c_scale,w_401.png 401w"
+          src="./src/assets/img/franceCollage/franceCollage-timeline.png" alt="franceCollage">
+      </picture>
+      <div class="decorative-container1">
+      <picture class="first-section_france">
+        <source sizes="(min-width: 390px) 80vw,
+          (min-width: 1512px) 80vw" 
+          srcset="./src/assets/img/franceCollage/franceCollage-timeline_kfcueh_c_scale,w_200.avif 200w,
+          ./src/assets/img/franceCollage/franceCollage-timeline_kfcueh_c_scale,w_401.avif 401w"
+          type="image/avif">
+        <img sizes="(min-width: 390px) 80vw,
+            (min-width: 768px) 80vw,
+            (min-width: 1512px) 80vw" 
+            srcset="./src/assets/img/franceCollage/franceCollage-desktop_gtjtq8_c_scale,w_200.png 200w,
+            ./src/assets/img/franceCollage/franceCollage-desktop_gtjtq8_c_scale,w_460.png 460w,
+            ./src/assets/img/franceCollage/franceCollage-desktop_gtjtq8_c_scale,w_721.png 721w"
+          src="./src/assets/img/franceCollage/franceCollage-desktop.png"
+          alt="franceCollage">
+      </picture>
+      <picture class="first-section_path1">
+        <source sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw" srcset="./src/assets/img/paths/path1-mobile.avif"
+          type="image/avif">
+        <img src="./src/assets/mobile/path1-mobile.png">
+      </picture>
       <p class="first-section_text2">After Plantin bought up everything he needed, he realised that <strong>Paris wasn’t the correct city to reside in</strong> if he intended
       to reach people internationally. <strong>His solution?</strong> Moving to Antwerp, Belgium in 1548.</p>
-      <img class="first-section_antwerp" src="./src/assets/mobile/antwerpCollage-mobile.png">
+      </div>
+      <div class="decorative-container2">
+      <picture class="first-section_antwerp">
+        <source sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/antwerpCollage/antwerpCollage-desktop_cpgmmr_c_scale,w_200.avif 200w,
+          ./src/assets/img/antwerpCollage/antwerpCollage-desktop_cpgmmr_c_scale,w_441.avif 441w,
+                ./src/assets/img/antwerpCollage/antwerpCollage-desktop_cpgmmr_c_scale,w_800.avif 800w" 
+          type="image/avif">
+          <img sizes="(min-width: 390px) 100vw,
+          (min-width: 768px) 100vw,
+          (min-width: 1512px) 100vw"
+        srcset="./src/assets/img/antwerpCollage/antwerpCollage-w_200.png 200w,
+                ./src/assets/img/antwerpCollage/antwerpCollage-desktop_ybyfd0_c_scale,w_383.png 383w,
+                ./src/assets/img/antwerpCollage/antwerpCollage-w_800.png 800w"
+              src="./src/assets/img/antwerpCollage/antwerpCollage-desktop.png" alt="antwerpCollage">
+      </picture>
+      <img class="first-section_path2" src="./src/assets/img/paths/path2-mobile.png">
       <p class="first-section_text3">Antwerp in the 16th century was a trading hub, as it is situated on a river that was suitable for ships to sail through.
       This move did pay off for Plantin but also caused him quite a few hardships</p>
-      <img class="map-interaction_icon" src="./src/assets/mobile/iconCollage-mobile.png">
-      <img class="map-interaction" src="./src/assets/mobile/map-mobile.png">
+      </div>
+      <div class="interaction-container">
+      <picture class="map-interaction">
+        <source sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/mapPlantin/map-desktop_hhsbpq_c_scale,w_200.avif 200w,
+          ./src/assets/img/mapPlantin/map-desktop_hhsbpq_c_scale,w_448.avif 448w,
+          ./src/assets/img/mapPlantin/map-desktop_hhsbpq_c_scale,w_987.avif 987w"
+          type="image/avif">
+          <img  sizes="(min-width: 390px) 100vw,
+          (min-width: 768px) 100vw,
+          (min-width: 1512px) 100vw"
+          srcset="./src/assets/img/mapPlantin/map-desktop_xfyff9_c_scale,w_200.png 200w,
+          ./src/assets/img/mapPlantin/map-desktop_xfyff9_c_scale,w_477.png 477w,
+          ./src/assets/img/mapPlantin/map-desktop_xfyff9_c_scale,w_987.png 987w"
+          src="./src/assets/mobile/map-desktop.png">
+      </picture>
+      <img class="map-interaction_icon" src="./src/assets/img/mapPlantin/mapPlantin-mobile.png">
+      </div>
     </section>
-    <section class="second-section">
+    <section class="second-section" id="second-section">
       <h1 class="second-section_title">Struggle to keep afloat</h1>
-      <img class="second-section_plantin" src="./src/assets/mobile/woundCollage-mobile.png">
-      <img class="second-section_dagger" src="./src/assets/mobile/daggerCollage-mobile.png">
+      <div class="interaction-container_dagger">
+      <picture class="second-section_plantin">
+        <source sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/plantinCollage/plantinCollage-desktop_e1iqct_c_scale,w_200.avif 200w,
+          ./src/assets/img/plantinCollage/plantinCollage-desktop_e1iqct_c_scale,w_807.avif 807w,
+          ./src/assets/img/plantinCollage/plantinCollage-desktop_e1iqct_c_scale,w_883.avif 883w"
+          type="image/avif">
+          <img sizes="(min-width: 390px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/plantinCollage/plantinCollage-desktop_vlybfl_c_scale,w_200.png 200w,
+          ./src/assets/img/plantinCollage/plantinCollage-desktop_vlybfl_c_scale,w_883.png 883w"
+          src="./src/assets/img/plantinCollage/plantinCollage-desktop.png">
+      </picture>
+      <picture class="second-section_dagger">
+        <source sizes="(min-width: 390px) 50vw,
+          (min-width: 1512px) 50vw"
+          srcset="./src/assets/img/dagger/dagger_hnmrez_c_scale,w_200.avif 200w,
+          ./src/assets/img/dagger/dagger_hnmrez_c_scale,w_443.avif 443w"
+          type="image/avif">
+        <img sizes="(min-width: 390px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/dagger/dagger_dwijd1_c_scale,w_200.png 200w,
+          ./src/assets/img/dagger/dagger_dwijd1_c_scale,w_443.png 443w"
+          src="./src/assets/img/dagger/dagger.png">
+      </picture>
+      </div>
       <h2 class="second-section_headline">The issues started when Plantin was attacked by thieves, who mistakenly thought that the basket he carried had something
       valuable. The thieves beat Plantin almost to death, this resulted in him losing mobility in one of his arms.</h2>
       <p class="second-section_text1">Because of his impairment, he could not continue being a bookbinder, so Plantin focused mostly on printing and selling
       his works.</p>
-      <img class="second-section_print" src="./src/assets/mobile/printCollage-mobile.png">
+      <picture class="second-section_print">
+        <source sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/printCollage/printCollage-desktop_txllwl_c_scale,w_200.avif 200w,
+          ./src/assets/img/printCollage/printCollage-desktop_txllwl_c_scale,w_547.avif 547w,
+          ./src/assets/img/printCollage/printCollage-desktop_txllwl_c_scale,w_863.avif 863w"
+          type="image/avif">
+        <img sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/printCollage/printCollage-desktop_wrt3kp_c_scale,w_200.png 200w,
+          ./src/assets/img/printCollage/printCollage-desktop_wrt3kp_c_scale,w_514.png 514w,
+          ./src/assets/img/printCollage/printCollage-desktop_wrt3kp_c_scale,w_863.png 863w"
+          src="./src/assets/img/printCollage/printCollage-desktop.png">
+      </picture>
       <p class="second-section_text2">One of his first opportunities to prove his abilities was when the guild “House of Love”, which he was a member of,
       wanted to spread their critical views of the Catholic church. Plantin took up the job.</p>
       <p class="second-section_text3">Being critical of the Catholic church in the 16th century wasn’t anything new, but was punishable by death, since most
       European countries were ruled by Catholic monarchs.</p>
-      <img class="second-section_philip" src="./src/assets/mobile/philipCollage-mobile.png">
+      <picture class="second-section_philip">
+        <source sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/philipCollage/philipCollage-desktop_jj2tgx_c_scale,w_200.avif 200w,
+          ./src/assets/img/philipCollage/philipCollage-desktop_jj2tgx_c_scale,w_448.avif 448w,
+          ./src/assets/img/philipCollage/philipCollage-desktop_jj2tgx_c_scale,w_657.avif 657w"
+          type="image/avif">
+        <img sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/philipCollage/philipCollage-desktop_uaakpb_c_scale,w_200.png 200w,
+          ./src/assets/img/philipCollage/philipCollage-desktop_uaakpb_c_scale,w_411.png 411w,
+          ./src/assets/img/philipCollage/philipCollage-desktop_uaakpb_c_scale,w_657.png 657w"
+          src="./src/assets/mimg/phillipCollage/philipCollage-desktop.png">
+      </picture>
       <p class="second-section_text4">The situation in Antwerp was no different as it was under the rule of Philip the II of Spain - a Catholic. Not so
       surprisingly most of “House of Love” were accused of heresy in 1562.</p>
       <p class="secons-section_text5">Some were executed, while others managed to run away. Plantin was one the lucky ones as he was in Paris at the time of
       the raid.</p>
-      <img class="second-section_heresy" src="./src/assets/mobile/heresyCollage-mobile.png">
-      <img class="second-section_hands" src="./src/assets/mobile/handsCollage-mobile.png">
+      <picture class="second-section_heresy">
+        <source sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/heresyCollage/hereseyCollage-desktop_qx3dno_c_scale,w_200.avif 200w,
+          ./src/assets/img/heresyCollage/hereseyCollage-desktop_qx3dno_c_scale,w_599.avif 599w,
+          ./src/assets/img/heresyCollage/hereseyCollage-desktop_qx3dno_c_scale,w_836.avif 836w"
+          type="image/avif">
+        <img sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/heresyCollage/hereseyCollage-desktop_ysg2te_c_scale,w_200.png 200w,
+          ./src/assets/img/heresyCollage/hereseyCollage-desktop_ysg2te_c_scale,w_522.png 522w,
+          ./src/assets/img/heresyCollage/hereseyCollage-desktop_ysg2te_c_scale,w_836.png 836w"
+          src="./src/assets/img/heresyCollage/heresyCollage-desktop.png">
+      </picture>
+      <picture class="second-section_hands">
+        <source sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/handsCollage/handsCollage-desktop_doifec_c_scale,w_200.avif 200w,
+          ./src/assets/img/handsCollage/handsCollage-desktop_doifec_c_scale,w_631.avif 631w,
+          ./src/assets/img/handsCollage/handsCollage-desktop_doifec_c_scale,w_1081.avif 1081w"
+          type="image/avif">
+        <img sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/handsCollage/handsCollage-desktop_t948lp_c_scale,w_200.png 200w,
+          ./src/assets/img/handsCollage/handsCollage-desktop_t948lp_c_scale,w_533.png 533w,
+          ./src/assets/img/handsCollage/handsCollage-desktop_t948lp_c_scale,w_1081.png"
+          src="./src/assets/img/handsCollage/handsCollage-desktop.png">
+      </picture>
       <p class="second-section_text6">In September 1563, he returned to Antwerp, where all his furniture had, in the meantime, been sold to the public.</p>
       <p class="second-section_text7">But presumably the creditors were friends of Plantin, who managed to ensure that the government did not impound his
       property. They subsequently became his partners.</p>
-      <img class="second-section_stronghold" src="./src/assets/mobile/strongholdCollage-mobile.png">
+      <picture class="second-section_stronghold">
+        <source sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/strongholdCollage/strongholdCollage-desktop_zucyho_c_scale,w_200.avif 200w,
+          ./src/assets/img/strongholdCollage/strongholdCollage-desktop_zucyho_c_scale,w_516.avif 526w"
+          type="image/avif">
+        <img sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/strongholdCollage/strongholdCollage-desktop_p5h8pl_c_scale,w_200.png 200w,
+          ./src/assets/img/strongholdCollage/strongholdCollage-desktop_p5h8pl_c_scale,w_516.png 516w"
+          src="./src/assets/img/strongholCollage/strongholdCollage-desktop.png">
+      </picture>
       <p class="second-section_text8">Everything seemed to go well for Plantin... that is until 1567, when all of his collaborators, who were convicted
       Calvinists, fled to the Netherlands.</p>
       <p class="second-section_text9">But the real danger to Plantin lay in Vianen, near Utrecht. In this Calvinist stronghold, Plantin secretly helped to
       establish an anti-Spanish printing works. This act of high treason could have cost him his head.</p>
     </section>
-    <section class="third-section">
+    <section class="third-section" id="third-section">
       <h1 class="third-section_title">Staying alive</h1>
       <h2 class="third-section_headline">To clear himself of all suspicion, Plantin sang the praises of the Catholic Church in letters to powerful protectors in
       this period.</h2>
       <p class="third-section_text1">He developed a plan that he suspected would be of interest to the ultra-Catholic King Philip II: a scholarly edition of
       the Biblical texts that would be the largest polyglot Bible of the 16th century.</p>
-      <img class="third-section_biblia" src="./src/assets/mobile/bibliaCollage-mobile.png">
+      <picture class="third-section_biblia">
+        <source sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/bibliaCollage/bibliaCollage-desktop_zu8kzg_c_scale,w_200.avif 200w,
+          ./src/assets/img/bibliaCollage/bibliaCollage-desktop_zu8kzg_c_scale,w_589.avif 589w"
+          type="image/avif">
+        <img sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/bibliaCollage/bibliaCollage-desktop_kerjlo_c_scale,w_200.png 200w,
+          ./src/assets/img/bibliaCollage/bibliaCollage-desktop_kerjlo_c_scale,w_354.png 354w,
+          ./src/assets/img/bibliaCollage/bibliaCollage-desktop_kerjlo_c_scale,w_589.png 589w"
+          src="./src/assets/img/bibliaCollage/bibliaCollage-desktop.png">
+      </picture>
       <p class="third-section_text2">This worked a well, so well in fact, that he received the title of King Philip II’s main printer. Ironically,  7 years
       later Plantin would receive the honour of being the printer for Antwerps city council, which was Calvinist at the time.</p>
-      <p class="third-section_text3">Unfortunately,  the good times didn’t last for very long, in 1576 Antwerp experienced the Spanish Fury, which took the
+      <p class="third-section_text3">Unfortunately, the good times didn’t last for very long, in 1576 Antwerp experienced the Spanish Fury, which took the
       lives of 17000 men, women and children.</p>
-      <img class="third-section_siege" src="./src/assets/mobile/siegeCollage-mobile.png">
+      <picture class="third-section_siege">
+        <source sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset=" ./src/assets/img/siegeCollage/siegeCollage-desktop_ui1qwq_c_scale,w_200.avif 200w,
+          ./src/assets/img/siegeCollage/siegeCollage-desktop_ui1qwq_c_scale,w_531.avif 531w,
+          ./src/assets/img/siegeCollage/siegeCollage-desktop_ui1qwq_c_scale,w_1352.avif 1352w"
+          type="image/avif">
+      <img sizes="(min-width: 390px) 80vw,
+          (min-width: 768px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/siegeCollage/siegeCollage-desktop_gwmlmu_c_scale,w_200.png 200w,
+          ./src/assets/img/siegeCollage/siegeCollage-desktop_gwmlmu_c_scale,w_464.png 464w,
+          ./src/assets/img/siegeCollage/siegeCollage-desktop_gwmlmu_c_scale,w_1352.png 1352w"
+      src="./src/assets/img/siegeCollage/siegeCollage-desktop.png">
+      </picture>
       <p class="third-section_text4">Plantin was caught between the different parties: to the outside world, he remained a Catholic, yet he also printed
       anti-Spanish pamphlets and works.</p>
-      <img class="third-section_leiden" src="./src/assets/mobile/leidenCollage-mobile.png">
+      <picture class="third-section_leiden">
+        <source sizes="(min-width: 390px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/leidenCollage/leidenCollage-desktop_pa6ped_c_scale,w_200.avif 200w,
+          ./src/assets/img/leidenCollage/leidenCollage-desktop_pa6ped_c_scale,w_491.avif 491w,
+          ./src/assets/img/leidenCollage/leidenCollage-desktop_pa6ped_c_scale,w_589.avif 589w"
+          type="image/avif">
+        <img sizes="(min-width: 390px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/leidenCollage/leidenCollage-desktop_owtgtt_c_scale,w_200.png 200w,
+          ./src/assets/img/leidenCollage/leidenCollage-desktop_owtgtt_c_scale,w_388.png 388w,
+          ./src/assets/img/leidenCollage/leidenCollage-desktop_pa6ped_c_scale,w_589.avif 589w"
+          src="./src/assets/img/leidenCollage/leidenCollage-desktop.png">
+      </picture>
       <p class="third-section_text4">The Spanish attempted to take over Antwerp, so Plantin tried to run to Leiden, where he worked for Leiden university.
       But he didn’t stay for too long and returned to Antwerp in 1586.</p>
       <p class="third-section_text5">Unbeknownst to Plantin, both his business and Antwerp would never be the same during his lifetime. Christophe Plantin
       died on July 1st 1589, his printing house of inherited by his son-in-law Jan I Moretus.</p>
     </section>
-    <section class="fourth-section">
+    <section class="fourth-section" id="fourth-section">
       <h1 class="fourth-section_title">What was left?</h1>
-      <p class="fourth-section_text1">After Plantins death, the printing house was managed by the Moretus family starting with Jan I Moretus and ending with
-      Edward Moretus, who sold the printing house to the city of Antwerp.</p>
-      <img class="fourth-section_lilies" src="./src/assets/mobile/liliesCollage-mobile.png">
+      <h2 class="fourth-section_text1">After Plantins death, the printing house was managed by the Moretus family starting with Jan I Moretus and ending with
+      Edward Moretus, who sold the printing house to the city of Antwerp.</h2>
+      <picture class="fourth-section_lilies">
+        <source sizes="(min-width: 390px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/liliesCollage/liliesCollage-desktop_ctrt2j_c_scale,w_200.avif 200w,
+          ./src/assets/img/liliesCollage/liliesCollage-desktop_ctrt2j_c_scale,w_358.avif 358w,
+          ./src/assets/img/liliesCollage/liliesCollage-desktop_ctrt2j_c_scale,w_563.avif 563w"
+          type="image/avif">
+        <img sizes="(min-width: 390px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/liliesCollage/liliesCollage-desktop_u4syuz_c_scale,w_200.png 200w,
+          ./src/assets/img/liliesCollage/liliesCollage-desktop_u4syuz_c_scale,w_330.png 330w,
+          ./src/assets/img/liliesCollage/liliesCollage-desktop_u4syuz_c_scale,w_563.png 563w"
+          src="./src/assets/img/liliesCollage/liliesCollage-desktop.png">
+      </picture>
       <p class="fourth-section_text2">The building has now been converted into a museum.</p>
       <button class="button-museum">Visit the museum</button>
-      <h1 class="fourth-section_title2">Other stories</h1>
-      <img class="fourth-section_moretus" src="./src/assets/mobile/moretusCollage-mobile.png">
+      <h1 class="fourth-section_title2" id="fourth-section_title2">Other stories</h1>
+      <picture class="fourth-section_moretus">
+        <source sizes="(min-width: 390px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/moretusCollage/moretusCollage-dekstop_h77ht2_c_scale,w_200.avif 200w,
+          ./src/assets/img/moretusCollage/moretusCollage-dekstop_h77ht2_c_scale,w_486.avif 486w"
+          type="image/avif">
+        <img sizes="(min-width: 390px) 80vw,
+          (min-width: 1512px) 80vw"
+          srcset="./src/assets/img/moretusCollage/moretusCollage-dekstop_bjujqf_c_scale,w_200.png 200w,
+          ./src/assets/img/moretusCollage/moretusCollage-dekstop_h77ht2_c_scale,w_486.avif 486w"
+          src="./src/assets/img/moretusCollage/moretusCollage-dekstop.png">
+      </picture>
       <p class="fourth-section_text3">Jan Moretus - heir of Christophe Plantin</p>
       <button class="button-newsletter">Subscribe to newsletter</button>
     </section>
