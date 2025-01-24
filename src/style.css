@@ -232,16 +232,29 @@ p{
   margin: 1em;
 }
 
-.first-section_path1{
+.path{
   position: absolute;
-  left: 5%;
-  top: 60%;
-  width: 30%;
+  margin-top: 20em;
 }
+
+.interaction-ship{
+  position: relative;
+  width: 50px;
+  height: auto;
+  transform: translate(-50%, -50%);
+  touch-action: none;
+  z-index: 10;
+}
+
+.ship{
+  width: 100px;
+}
+
 
 .first-section_text2{
   width: 14em;
   align-self: flex-end;
+  margin-top: -5em;
 }
 
 .first-section_text3{
@@ -253,6 +266,7 @@ p{
 .first-section_antwerp{
   align-self: flex-end;
   margin-right: 1em;
+  z-index: 5;
 }
 
 .decorative-container2{
