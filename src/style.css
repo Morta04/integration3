@@ -217,8 +217,119 @@ p{
   line-height: 1.5;
 }
 
-.timeline-card1{
-  align-self: center;
+.timeline {
+  position: relative;
+  display: flex;
+  align-items: center;
+  /* Make the stack's container position relative */
+  margin-left: 5em;
+  /* margin-bottom: 10em; */
+  width: 60%;
+}
+
+.timeline-cards{
+  position: relative;
+  width: 200px;
+  height: 300px;
+}
+
+.timeline-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+    /* Fixed width */
+  height: 300px;
+    /* Fixed height */
+  opacity: 0;
+  transition: opacity 0.5s, transform 0.5s;
+  object-fit: cover;
+  margin-top: 10px;
+}
+
+.arrow{
+  font-size: 36px;
+  color: var(--second-bg);
+  cursor: pointer;
+  padding: 10px;
+  user-select: none;
+  transition: color 0.3s;
+}
+
+.arrow:hover {
+  color: var(--third-color);
+}
+
+.timeline-card.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.card.inactive {
+  opacity: 0;
+  z-index: 0;
+}
+
+#prev {
+  position: absolute;
+  left: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#next {
+  position: absolute;
+  right: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.franceCard,
+.antwerpCard,
+.councilCard{
+  width: 220px;
+}
+
+.printCard,
+.heresyCard{
+  width: 215px;
+}
+
+.bibliaCard{
+  width: 228px;
+}
+
+.leidenCard{
+  width: 240px;
+  margin-right: 1em;
+}
+
+.arrivalCard{
+  width: 215px;
+}
+.coffinCard{
+  width: 190px;
+}
+
+
+.timeline-card:nth-child(n+2) {
+  z-index: 0;
+  /* Cards below the first one start with a lower z-index */
+  transform: translateY(-10px) translateX(10px);
+  /* Offset the stack */
+}
+
+.timeline-card:hover {
+  opacity: 0.8;
+  /* Slight effect to show it's clickable */
+}
+
+.timeline-card.revealed {
+  opacity: 0;
+  transform: translateY(-20px) translateX(20px);
+  /* Slide out when revealed */
+  z-index: -1;
+  /* Move revealed card behind others */
 }
 
 .decorative-container1 {
@@ -343,6 +454,9 @@ p{
 }
 
 .second-section{
+  position: relative;
+    /* Default background */
+  transition: background-color 0.3s ease;
   clip-path: polygon(0 0, 100% 2%, 100% 98%, 0 100%);
 }
 

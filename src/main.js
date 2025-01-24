@@ -301,88 +301,134 @@ initializeIconPosition();
 document.addEventListener('DOMContentLoaded', () => {
   const dagger = document.querySelector('.second-section_dagger img');
   const targetArea = document.querySelector('.target-area');
+  const collageContainer = document.querySelector('.second-section_plantin');
   const section = document.querySelector('.second-section');
   let isDragging = false;
   let startX, startY;
-  let offsetX, offsetY;
 
-  // Start dragging
-  const onDragStart = (e) => {
-    isDragging = true;
-    // Calculate offset between the mouse and the dagger's top-left corner
-    startX = e.clientX || e.touches[0].clientX;
-    startY = e.clientY || e.touches[0].clientY;
-    offsetX = dagger.offsetLeft - startX;
-    offsetY = dagger.offsetTop - startY;
-
-    // Prevent selection of text while dragging
-    e.preventDefault();
-  };
-
-  // Move the dagger with the mouse/touch
+  // Function to handle dragging
   const onDragMove = (e) => {
     if (!isDragging) return;
 
     const clientX = e.clientX || e.touches[0].clientX;
     const clientY = e.clientY || e.touches[0].clientY;
 
-    // Calculate new position relative to the mouse/touch position
-    const newX = clientX + offsetX;
-    const newY = clientY + offsetY;
+    const xOffset = clientX - startX;
+    const yOffset = clientY - startY;
 
-    // Set the new position of the dagger
-    dagger.style.left = `${newX}px`;
-    dagger.style.top = `${newY}px`;
+    // Move the dagger with the mouse
+    dagger.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
 
-    // Check if the dagger is inside the target area
-    const daggerRect = dagger.getBoundingClientRect();
+    // Check if dagger overlaps the target area
     const targetRect = targetArea.getBoundingClientRect();
+    const daggerRect = dagger.getBoundingClientRect();
 
-    // Check if the dagger is inside the target area
     if (
       daggerRect.left < targetRect.right &&
       daggerRect.right > targetRect.left &&
       daggerRect.top < targetRect.bottom &&
       daggerRect.bottom > targetRect.top
     ) {
-      // Change the background color of the section
-      section.style.backgroundColor = '#1a1a1a'; // Off-black color
-    } else {
-      section.style.backgroundColor = ''; // Reset to default
+      // Snap dagger to the center of the target area
+      const targetCenterX =
+        targetRect.left +
+        targetRect.width / 2 -
+        collageContainer.getBoundingClientRect().left;
+      const targetCenterY =
+        targetRect.top +
+        targetRect.height / 2 -
+        collageContainer.getBoundingClientRect().top;
+
+      dagger.style.transform = `translate(${targetCenterX}px, ${targetCenterY}px)`;
+      dagger.style.pointerEvents = 'none'; // Lock it in place
+      isDragging = false;
+
+      // Change the background color
+      section.style.backgroundColor = '#1a1a1a'; // Example: off-black
     }
   };
 
-  // Stop dragging
-  const onDragEnd = () => {
-    if (!isDragging) return;
+  // Function to start dragging
+  const onDragStart = (e) => {
+    isDragging = true;
 
+    // Record the starting mouse/touch position
+    startX = e.clientX || e.touches[0].clientX;
+    startY = e.clientY || e.touches[0].clientY;
+
+    e.preventDefault();
+  };
+
+  // Function to stop dragging
+  const onDragEnd = () => {
     isDragging = false;
 
-    // Get the final position of the dagger after dragging
-    const daggerRect = dagger.getBoundingClientRect();
-    const targetRect = targetArea.getBoundingClientRect();
-
-    // If the dagger is inside the target area, snap it into place
-    if (
-      daggerRect.left < targetRect.right &&
-      daggerRect.right > targetRect.left &&
-      daggerRect.top < targetRect.bottom &&
-      daggerRect.bottom > targetRect.top
-    ) {
-      // Snap the dagger to the bottom of the target area
-      dagger.style.left = `${targetRect.left + (targetRect.width / 2) - (dagger.offsetWidth / 2)}px`;
-      dagger.style.top = `${targetRect.top + (targetRect.height - dagger.offsetHeight)}px`;
-
-      // Lock the dagger in place (optional)
-      dagger.style.pointerEvents = 'none'; // Disable further interaction
-    }
+    // Optional: Reset the dagger position if not in the target area
   };
 
-  // Add event listeners for drag actions
+  // Event listeners
   dagger.addEventListener('mousedown', onDragStart);
   dagger.addEventListener('touchstart', onDragStart, { passive: false });
+
   document.addEventListener('mousemove', onDragMove);
   document.addEventListener('touchmove', onDragMove, { passive: false });
+
   document.addEventListener('mouseup', onDragEnd);
   document.addEventListener('touchend', onDragEnd);
 });
+
+
+
+
+
+const cards = document.querySelectorAll('.timeline-card');
+const prevArrow = document.getElementById('prev');
+const nextArrow = document.getElementById('next');
+
+// Set the initial card index to 0 (showing the first card)
+let currentCardIndex = 0;
+
+// Function to show the current card and hide others
+function updateCards() {
+  cards.forEach((card, index) => {
+    if (index === currentCardIndex) {
+      card.classList.add('active');
+      card.classList.remove('inactive');
+    } else {
+      card.classList.remove('active');
+      card.classList.add('inactive');
+    }
+  });
+
+  // Show/hide arrows based on the current card
+  if (currentCardIndex === 0) {
+    prevArrow.style.display = 'none'; // Hide the "Prev" arrow at the first card
+  } else {
+    prevArrow.style.display = 'block'; // Show the "Prev" arrow when not on the first card
+  }
+
+  if (currentCardIndex === cards.length - 1) {
+    nextArrow.style.display = 'none'; // Hide the "Next" arrow at the last card
+  } else {
+    nextArrow.style.display = 'block'; // Show the "Next" arrow when not on the last card
+  }
+}
+
+// Event listener for the "Next" arrow (show the next card)
+nextArrow.addEventListener('click', function() {
+  if (currentCardIndex < cards.length - 1) {
+    currentCardIndex++;
+    updateCards();
+  }
+});
+
+// Event listener for the "Previous" arrow (show the previous card)
+prevArrow.addEventListener('click', function() {
+  if (currentCardIndex > 0) {
+    currentCardIndex--;
+    updateCards();
+  }
+});
+
+// Initialize the cards and arrows on page load
+updateCards();
