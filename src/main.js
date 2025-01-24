@@ -297,3 +297,92 @@ initializeIconPosition();
     }
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const dagger = document.querySelector('.second-section_dagger img');
+  const targetArea = document.querySelector('.target-area');
+  const section = document.querySelector('.second-section');
+  let isDragging = false;
+  let startX, startY;
+  let offsetX, offsetY;
+
+  // Start dragging
+  const onDragStart = (e) => {
+    isDragging = true;
+    // Calculate offset between the mouse and the dagger's top-left corner
+    startX = e.clientX || e.touches[0].clientX;
+    startY = e.clientY || e.touches[0].clientY;
+    offsetX = dagger.offsetLeft - startX;
+    offsetY = dagger.offsetTop - startY;
+
+    // Prevent selection of text while dragging
+    e.preventDefault();
+  };
+
+  // Move the dagger with the mouse/touch
+  const onDragMove = (e) => {
+    if (!isDragging) return;
+
+    const clientX = e.clientX || e.touches[0].clientX;
+    const clientY = e.clientY || e.touches[0].clientY;
+
+    // Calculate new position relative to the mouse/touch position
+    const newX = clientX + offsetX;
+    const newY = clientY + offsetY;
+
+    // Set the new position of the dagger
+    dagger.style.left = `${newX}px`;
+    dagger.style.top = `${newY}px`;
+
+    // Check if the dagger is inside the target area
+    const daggerRect = dagger.getBoundingClientRect();
+    const targetRect = targetArea.getBoundingClientRect();
+
+    // Check if the dagger is inside the target area
+    if (
+      daggerRect.left < targetRect.right &&
+      daggerRect.right > targetRect.left &&
+      daggerRect.top < targetRect.bottom &&
+      daggerRect.bottom > targetRect.top
+    ) {
+      // Change the background color of the section
+      section.style.backgroundColor = '#1a1a1a'; // Off-black color
+    } else {
+      section.style.backgroundColor = ''; // Reset to default
+    }
+  };
+
+  // Stop dragging
+  const onDragEnd = () => {
+    if (!isDragging) return;
+
+    isDragging = false;
+
+    // Get the final position of the dagger after dragging
+    const daggerRect = dagger.getBoundingClientRect();
+    const targetRect = targetArea.getBoundingClientRect();
+
+    // If the dagger is inside the target area, snap it into place
+    if (
+      daggerRect.left < targetRect.right &&
+      daggerRect.right > targetRect.left &&
+      daggerRect.top < targetRect.bottom &&
+      daggerRect.bottom > targetRect.top
+    ) {
+      // Snap the dagger to the bottom of the target area
+      dagger.style.left = `${targetRect.left + (targetRect.width / 2) - (dagger.offsetWidth / 2)}px`;
+      dagger.style.top = `${targetRect.top + (targetRect.height - dagger.offsetHeight)}px`;
+
+      // Lock the dagger in place (optional)
+      dagger.style.pointerEvents = 'none'; // Disable further interaction
+    }
+  };
+
+  // Add event listeners for drag actions
+  dagger.addEventListener('mousedown', onDragStart);
+  dagger.addEventListener('touchstart', onDragStart, { passive: false });
+  document.addEventListener('mousemove', onDragMove);
+  document.addEventListener('touchmove', onDragMove, { passive: false });
+  document.addEventListener('mouseup', onDragEnd);
+  document.addEventListener('touchend', onDragEnd);
+});

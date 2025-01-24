@@ -27,7 +27,7 @@ html {
 
 :root {
   --colour-bg: #FFEECD;
-  --second-bg: #000000;
+  --second-bg: #0F0F0F;
   --third-bg: #FFE2A8;
   --third-color: #B20C3B;
 }
@@ -343,7 +343,6 @@ p{
 }
 
 .second-section{
-  background-color: var(--second-bg);
   clip-path: polygon(0 0, 100% 2%, 100% 98%, 0 100%);
 }
 
@@ -358,8 +357,24 @@ p{
   margin-bottom: 2em;
 }
 
+.second-section_dagger img {
+  cursor: pointer;
+  /* Show pointer cursor to indicate it's draggable */
+  position: relative;
+  /* Allow absolute positioning */
+  /* Smooth transition for dragging */
+}
+
 .second-section_plantin{
+  position: relative;
   margin-left: 5em;
+}
+
+.plantin {
+  width: 70%;
+  /* Ensure image takes up the desired width */
+  height: auto;
+  /* Adjust height to maintain aspect ratio */
 }
 
 .second-section_dagger{
@@ -368,6 +383,20 @@ p{
   top: 15%;
   width: 50%;
   margin-top: -7em;
+    /* Ensure transform is initially at (0, 0) */
+  will-change: transform;
+}
+
+.target-area {
+  position: absolute;
+  top: 50%;
+  /* Example position */
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  /* Debug color */
+  transform: translate(-50%, -50%);
 }
 
 .second-section_headline{
