@@ -250,17 +250,15 @@ p{
   width: 100px;
 }
 
-
 .first-section_text2{
   width: 14em;
   align-self: flex-end;
-  margin-top: -5em;
+  margin-top: -3em;
 }
 
 .first-section_text3{
   width: 14em;
   align-self: flex-end;
-  margin-top: -1em;
 }
 
 .first-section_antwerp{
@@ -275,30 +273,73 @@ p{
   flex-direction: column;
 }
 
-.first-section_path2{
-  position: absolute;
-  left: 10%;
-  top: 55%;
-  width: 8%;
-}
-
-.interaction-container{
+.interaction-container {
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.map-interaction_icon{
+.map-interaction {
+  position: relative;
+  /* This ensures the path and icon are contained here */
+  margin: 1em;
+}
+
+.map-interaction_icon {
   position: absolute;
   width: 15%;
-  left: 50%;
-  top: 50%;
+  cursor: grab;
+  transition: transform 0.2s ease;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  /* Ensure the icon stays above the path */
 }
 
-.map-interaction{
-  align-self: center;
-  position: block;
-  margin: 1em;
+.map-interaction_icon.dragging {
+  cursor: grabbing;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.map-path {
+  position: absolute;
+  /* Position path absolutely inside .map-interaction */
+  top: 22%;
+  /* Your fixed position for the path */
+  left: 43%;
+  /* Your fixed position for the path */
+  transform: rotate(-2deg);
+  /* Your rotation angle for the path */
+}
+
+.info-display {
+  position: absolute;
+  padding: 10px;
+  background-color: var(--third-color);
+  /* Semi-transparent background */
+  color: var(--colour-bg);
+  border-radius: 8px;
+  /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  /* Light shadow */
+  max-width: 200px;
+  /* Limiting the width of the info box */
+  font-family: RoxboroughCF;
+  display: none;
+  /* Hidden by default, shown when needed */
+  z-index: 100;
+  /* Ensure it is above other elements */
+}
+
+.city-name {
+  margin: 0;
+  font-size: 16px;
+}
+
+.info-display p {
+  font-size: 14px;
+  margin: 5px 0 0;
+  color: var(--colour-bg);
 }
 
 .second-section{
