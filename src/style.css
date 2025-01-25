@@ -471,14 +471,6 @@ p{
   margin-bottom: 2em;
 }
 
-.second-section_dagger img {
-  cursor: pointer;
-  /* Show pointer cursor to indicate it's draggable */
-  position: relative;
-  /* Allow absolute positioning */
-  /* Smooth transition for dragging */
-}
-
 .second-section_plantin{
   position: relative;
   margin-left: 5em;
@@ -497,20 +489,6 @@ p{
   top: 15%;
   width: 50%;
   margin-top: -7em;
-    /* Ensure transform is initially at (0, 0) */
-  will-change: transform;
-}
-
-.target-area {
-  position: absolute;
-  top: 50%;
-  /* Example position */
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  background-color: red;
-  /* Debug color */
-  transform: translate(-50%, -50%);
 }
 
 .second-section_headline{
