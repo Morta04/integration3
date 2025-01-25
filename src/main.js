@@ -1,3 +1,55 @@
+const cards = document.querySelectorAll('.timeline-card');
+const prevArrow = document.getElementById('prev');
+const nextArrow = document.getElementById('next');
+
+// Set the initial card index to 0 (showing the first card)
+let currentCardIndex = 0;
+
+// Function to show the current card and hide others
+function updateCards() {
+  cards.forEach((card, index) => {
+    if (index === currentCardIndex) {
+      card.classList.add('active');
+      card.classList.remove('inactive');
+    } else {
+      card.classList.remove('active');
+      card.classList.add('inactive');
+    }
+  });
+
+  // Show/hide arrows based on the current card
+  if (currentCardIndex === 0) {
+    prevArrow.style.display = 'none'; // Hide the "Prev" arrow at the first card
+  } else {
+    prevArrow.style.display = 'block'; // Show the "Prev" arrow when not on the first card
+  }
+
+  if (currentCardIndex === cards.length - 1) {
+    nextArrow.style.display = 'none'; // Hide the "Next" arrow at the last card
+  } else {
+    nextArrow.style.display = 'block'; // Show the "Next" arrow when not on the last card
+  }
+}
+
+// Event listener for the "Next" arrow (show the next card)
+nextArrow.addEventListener('click', function() {
+  if (currentCardIndex < cards.length - 1) {
+    currentCardIndex++;
+    updateCards();
+  }
+});
+
+// Event listener for the "Previous" arrow (show the previous card)
+prevArrow.addEventListener('click', function() {
+  if (currentCardIndex > 0) {
+    currentCardIndex--;
+    updateCards();
+  }
+});
+
+// Initialize the cards and arrows on page load
+updateCards();
+
 document.addEventListener('DOMContentLoaded', () => {
   const path = document.getElementById('path');
   const ship = document.getElementById('ship');
@@ -299,74 +351,91 @@ initializeIconPosition();
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const dagger = document.querySelector('.second-section_dagger img');
-  const targetArea = document.querySelector('.target-area');
-  const collageContainer = document.querySelector('.second-section_plantin');
+  const dagger = document.querySelector('.second-section_dagger');
+  const collageContainer = document.querySelector('.plantin');
   const section = document.querySelector('.second-section');
   let isDragging = false;
-  let startX, startY;
-
-  // Function to handle dragging
-  const onDragMove = (e) => {
-    if (!isDragging) return;
-
-    const clientX = e.clientX || e.touches[0].clientX;
-    const clientY = e.clientY || e.touches[0].clientY;
-
-    const xOffset = clientX - startX;
-    const yOffset = clientY - startY;
-
-    // Move the dagger with the mouse
-    dagger.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
-
-    // Check if dagger overlaps the target area
-    const targetRect = targetArea.getBoundingClientRect();
-    const daggerRect = dagger.getBoundingClientRect();
-
-    if (
-      daggerRect.left < targetRect.right &&
-      daggerRect.right > targetRect.left &&
-      daggerRect.top < targetRect.bottom &&
-      daggerRect.bottom > targetRect.top
-    ) {
-      // Snap dagger to the center of the target area
-      const targetCenterX =
-        targetRect.left +
-        targetRect.width / 2 -
-        collageContainer.getBoundingClientRect().left;
-      const targetCenterY =
-        targetRect.top +
-        targetRect.height / 2 -
-        collageContainer.getBoundingClientRect().top;
-
-      dagger.style.transform = `translate(${targetCenterX}px, ${targetCenterY}px)`;
-      dagger.style.pointerEvents = 'none'; // Lock it in place
-      isDragging = false;
-
-      // Change the background color
-      section.style.backgroundColor = '#1a1a1a'; // Example: off-black
-    }
-  };
+  let offsetX = 0, offsetY = 0;
 
   // Function to start dragging
   const onDragStart = (e) => {
     isDragging = true;
 
-    // Record the starting mouse/touch position
-    startX = e.clientX || e.touches[0].clientX;
-    startY = e.clientY || e.touches[0].clientY;
+    // Get the initial mouse/touch position
+    const startX = e.clientX || e.touches[0].clientX;
+    const startY = e.clientY || e.touches[0].clientY;
 
+    // Calculate the offset between the cursor and the top-left corner of the dagger
+    const rect = dagger.getBoundingClientRect();
+    offsetX = startX - rect.left;
+    offsetY = startY - rect.top;
+
+    // Set the dagger to `absolute` to enable free movement
+    dagger.style.position = 'absolute';
+
+    // Prevent default behavior
     e.preventDefault();
+  };
+
+  // Function to move the dagger
+  const onDragMove = (e) => {
+    if (!isDragging) return;
+
+    // Get current mouse/touch position
+    const clientX = e.clientX || e.touches[0].clientX;
+    const clientY = e.clientY || e.touches[0].clientY;
+
+    // Calculate the new position for the dagger based on cursor movement
+    const moveX = clientX - offsetX;
+    const moveY = clientY - offsetY;
+
+    // Apply the new position to the dagger
+    dagger.style.left = `${moveX}px`;
+    dagger.style.top = `${moveY}px`;
+
+    // Check if the dagger is inside the collage area
+    const collageRect = collageContainer.getBoundingClientRect();
+    const daggerRect = dagger.getBoundingClientRect();
+
+    const isInsideCollage =
+      daggerRect.left >= collageRect.left &&
+      daggerRect.top >= collageRect.top &&
+      daggerRect.right <= collageRect.right &&
+      daggerRect.bottom <= collageRect.bottom;
+
+    // Change the background color dynamically
+    if (isInsideCollage) {
+      section.style.backgroundColor = '#0F0F0F'; // Change to off-black
+    } else {
+      section.style.backgroundColor = ''; // Reset background color
+    }
   };
 
   // Function to stop dragging
   const onDragEnd = () => {
+    if (!isDragging) return;
+
     isDragging = false;
 
-    // Optional: Reset the dagger position if not in the target area
+    // Check if the dagger is inside the collage container
+    const collageRect = collageContainer.getBoundingClientRect();
+    const daggerRect = dagger.getBoundingClientRect();
+
+    const isInsideCollage =
+      daggerRect.left >= collageRect.left &&
+      daggerRect.top >= collageRect.top &&
+      daggerRect.right <= collageRect.right &&
+      daggerRect.bottom <= collageRect.bottom;
+
+    // Keep background color changed if dagger is dropped inside the collage
+    if (isInsideCollage) {
+      section.style.backgroundColor = '#0F0F0F';
+    } else {
+      section.style.backgroundColor = ''; // Reset background if outside
+    }
   };
 
-  // Event listeners
+  // Attach event listeners for drag start, move, and end
   dagger.addEventListener('mousedown', onDragStart);
   dagger.addEventListener('touchstart', onDragStart, { passive: false });
 
@@ -376,59 +445,3 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('mouseup', onDragEnd);
   document.addEventListener('touchend', onDragEnd);
 });
-
-
-
-
-
-const cards = document.querySelectorAll('.timeline-card');
-const prevArrow = document.getElementById('prev');
-const nextArrow = document.getElementById('next');
-
-// Set the initial card index to 0 (showing the first card)
-let currentCardIndex = 0;
-
-// Function to show the current card and hide others
-function updateCards() {
-  cards.forEach((card, index) => {
-    if (index === currentCardIndex) {
-      card.classList.add('active');
-      card.classList.remove('inactive');
-    } else {
-      card.classList.remove('active');
-      card.classList.add('inactive');
-    }
-  });
-
-  // Show/hide arrows based on the current card
-  if (currentCardIndex === 0) {
-    prevArrow.style.display = 'none'; // Hide the "Prev" arrow at the first card
-  } else {
-    prevArrow.style.display = 'block'; // Show the "Prev" arrow when not on the first card
-  }
-
-  if (currentCardIndex === cards.length - 1) {
-    nextArrow.style.display = 'none'; // Hide the "Next" arrow at the last card
-  } else {
-    nextArrow.style.display = 'block'; // Show the "Next" arrow when not on the last card
-  }
-}
-
-// Event listener for the "Next" arrow (show the next card)
-nextArrow.addEventListener('click', function() {
-  if (currentCardIndex < cards.length - 1) {
-    currentCardIndex++;
-    updateCards();
-  }
-});
-
-// Event listener for the "Previous" arrow (show the previous card)
-prevArrow.addEventListener('click', function() {
-  if (currentCardIndex > 0) {
-    currentCardIndex--;
-    updateCards();
-  }
-});
-
-// Initialize the cards and arrows on page load
-updateCards();
