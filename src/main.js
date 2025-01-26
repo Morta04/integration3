@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let dragging = false;
   let isUpdating = false;
 
+  // Helper function to find the closest point on the SVG path
   const getClosestPoint = (x, y) => {
     let closestPoint = { x: 0, y: 0 };
     let minDistance = Infinity;
@@ -79,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return closestPoint;
   };
 
+  // Function to update the ship's position as it follows the path
   const updateShipPosition = (clientX, clientY) => {
     if (isUpdating) return;
     isUpdating = true;
@@ -96,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  // Auto-scroll functionality when the user moves too close to the edge
   const autoScroll = (clientY) => {
     const scrollMargin = 50;
     const scrollSpeed = 10;
@@ -107,12 +110,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // Handle the start of dragging
   const onStart = (e) => {
     dragging = true;
     const { clientX, clientY } = e.touches ? e.touches[0] : e;
     updateShipPosition(clientX, clientY);
   };
 
+  // Handle dragging movement
   const onMove = (e) => {
     if (!dragging) return;
     const { clientX, clientY } = e.touches ? e.touches[0] : e;
@@ -120,10 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
     autoScroll(clientY);
   };
 
+  // Handle the end of dragging
   const onEnd = () => {
     dragging = false;
   };
 
+  // Event listeners for mouse and touch events
   ship.addEventListener('mousedown', onStart);
   ship.addEventListener('touchstart', onStart);
 
@@ -132,223 +139,78 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.addEventListener('mouseup', onEnd);
   document.addEventListener('touchend', onEnd);
+
+  // Responsive art direction: Change SVG path based on window width
+  const updatePathForDevice = () => {
+    const width = window.innerWidth;
+
+    // Mobile path (for width <= 390px)
+    if (width <= 390) {
+      path.setAttribute('d', 'M114 3.5C82.8333 24.1667 38.5 57 20 102C-0.694763 152.339 1.50001 238 10.5 257C19.5 276 22.5 327.299 79.5 355C133 381 31.5 380 16 449C0.499994 518 20 565.5 28 582C34.4 595.2 56.5 613.5 68.5 619.5'); // Mobile path (390px)
+    } 
+    // Desktop path (for width >= 1440px)
+    else if (width >= 1440) {
+      path.setAttribute('d', 'M945.5 1C956.167 97.6667 943.782 303.144 905.5 374C848.5 479.5 634.667 533.667 516.5 551.5C418 566.667 245 560 167.5 612C105.082 653.881 22 775.5 7.99998 874C-3.20002 952.8 32 1064.17 51 1110C59 1135 88.8 1193.7 144 1228.5'); // Desktop path (1440px)
+    } 
+    // Tablet path (optional for widths between 390px and 1440px)
+    else {
+      path.setAttribute('d', 'M114 3.5C82.8333 24.1667 38.5 57 20 102C-0.694763 152.339 1.50001 238 10.5 257C19.5 276 22.5 327.299 79.5 355C133 381 31.5 380 16 449C0.499994 518 20 565.5 28 582C34.4 595.2 56.5 613.5 68.5 619.5'); // Default path for tablet sizes
+    }
+  };
+
+  // Update path on window resize
+  window.addEventListener('resize', updatePathForDevice);
+
+  // Initial path update based on current screen size
+  updatePathForDevice();
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  const path = document.getElementById('path2');
-  const icon = document.querySelector('.map-interaction_icon');
-  const mapContainer = document.querySelector('.interaction-container');
-  const svgElement = document.querySelector('.map-path');
-  const circles = document.querySelectorAll('.map-path circle');
-  const infoDisplay = document.createElement('div');
+      const draggable = document.getElementById('draggable');
+      const path = document.getElementById('desktopPath');
+      const circles = document.querySelectorAll('.desktop-circle circle');
+      
+      gsap.registerPlugin(Draggable, MotionPathPlugin);
 
-  let currentCircleIndex = null; // To track which circle is being interacted with
+      Draggable.create(draggable, {
+        type: "x,y",
+        bounds: ".interaction-container",
+        onDrag: function() {
+          gsap.to(draggable, { x: this.x, y: this.y });
+        },
+        onPress: () => gsap.to(draggable, { scale: 1.1, duration: 0.3 }),
+        onRelease: () => {
+          gsap.to(draggable, { scale: 1, duration: 0.3 });
 
-  if (!(path instanceof SVGPathElement)) {
-    console.error('The element with id="path2" is not a valid SVG <path> element.');
-    return;
-  }
+          // Find the nearest circle to snap to
+          let closestCircle = null;
+          let closestDist = Infinity;
+          circles.forEach(circle => {
+            const rect = circle.getBoundingClientRect();
+            const circleCenter = {
+              x: rect.left + rect.width / 2,
+              y: rect.top + rect.height / 2
+            };
+            const dist = Math.hypot(circleCenter.x - this.x, circleCenter.y - this.y);
+            if (dist < closestDist) {
+              closestDist = dist;
+              closestCircle = circle;
+            }
+          });
 
-  infoDisplay.className = 'info-display';
-  mapContainer.appendChild(infoDisplay);
-
-  const pathLength = path.getTotalLength();
-  let dragging = false;
-
-  const calculateDistance = (x1, y1, x2, y2) => Math.hypot(x2 - x1, y2 - y1);
-
-  const findClosestPointOnPath = (x, y) => {
-    let closestPoint = { x: 0, y: 0 };
-    let minDistance = Infinity;
-
-    for (let i = 0; i <= pathLength; i++) {
-      const point = path.getPointAtLength(i);
-      const distance = calculateDistance(x, y, point.x, point.y);
-
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestPoint = { x: point.x, y: point.y };
-      }
-    }
-
-    return closestPoint;
-  };
-
-  const findClosestCircle = (x, y, range = 10) => {
-    let closestCircle = null;
-    let minDistance = Infinity;
-
-    circles.forEach((circle) => {
-      const cx = parseFloat(circle.getAttribute('cx'));
-      const cy = parseFloat(circle.getAttribute('cy'));
-      const distance = calculateDistance(x, y, cx, cy);
-
-      if (distance < minDistance && distance <= range) {
-        minDistance = distance;
-        closestCircle = circle;
-      }
+          if (closestCircle) {
+            const city = closestCircle.getAttribute('data-city');
+            const cityInfo = closestCircle.getAttribute('city-info');
+            alert(`City: ${city}\nInfo: ${cityInfo}`);
+            gsap.to(draggable, {
+              x: closestCircle.getAttribute('cx') - 14.5,  // Adjust for circle's radius
+              y: closestCircle.getAttribute('cy') - 14.5,
+              duration: 0.5
+            });
+          }
+        }
+      });
     });
-
-    return closestCircle;
-  };
-
-  const updateIconPosition = (clientX, clientY) => {
-    const containerRect = mapContainer.getBoundingClientRect();
-    const svgRect = svgElement.getBoundingClientRect();
-
-    if (!svgRect || !containerRect) {
-      console.error('getBoundingClientRect() failed.');
-      return;
-    }
-
-    const x = clientX - svgRect.left;
-    const y = clientY - svgRect.top;
-
-    const closestPoint = findClosestPointOnPath(x, y);
-    const closestCircle = findClosestCircle(closestPoint.x, closestPoint.y, 15);
-
-    if (closestCircle) {
-      const cx = parseFloat(closestCircle.getAttribute('cx'));
-      const cy = parseFloat(closestCircle.getAttribute('cy'));
-
-      icon.style.left = `${cx + svgRect.left - containerRect.left}px`;
-      icon.style.top = `${cy + svgRect.top - containerRect.top}px`;
-
-      const city = closestCircle.getAttribute('data-city');
-      const info = closestCircle.getAttribute('city-info') || 'No additional info';
-      displayCityInfo(city, info, cx, cy);
-    } else {
-      icon.style.left = `${closestPoint.x + svgRect.left - containerRect.left}px`;
-      icon.style.top = `${closestPoint.y + svgRect.top - containerRect.top}px`;
-
-      infoDisplay.style.display = 'none';
-    }
-  };
-
-const initializeIconPosition = () => {
-  const svgRect = svgElement.getBoundingClientRect();  // The position of the SVG
-  const containerRect = mapContainer.getBoundingClientRect(); // The position of the map container
-
-  // Get the position of the first circle (Saint-Avertin)
-  const firstCircle = circles[0]; // Assuming the first circle in your SVG is the starting point
-  const circleX = parseFloat(firstCircle.getAttribute('cx'));  // X position of the circle
-  const circleY = parseFloat(firstCircle.getAttribute('cy'));  // Y position of the circle
-
-  // Calculate the icon position relative to the SVG and map container
-  const iconX = circleX + svgRect.left - containerRect.left;
-  const iconY = circleY + svgRect.top - containerRect.top;
-
-  // Set the icon's initial position
-  icon.style.left = `${iconX}px`;
-  icon.style.top = `${iconY}px`;
-};
-
-// Call this function on page load to place the icon correctly
-initializeIconPosition();
-
-  // Function to display city information in an info box
-  const displayCityInfo = (cityName, cityInfo, x, y) => {
-    infoDisplay.innerHTML = ''; // Clear previous content
-
-    // Create and style the h3 and p elements
-    const h3 = document.createElement('h3');
-    h3.classList.add('city-name');
-    h3.textContent = cityName;
-
-    const p = document.createElement('p');
-    p.classList.add('city-info');
-    p.textContent = cityInfo;
-
-    // Append h3 and p to the info box
-    infoDisplay.appendChild(h3);
-    infoDisplay.appendChild(p);
-
-    // Position the box next to the icon (right side of the circle icon)
-    infoDisplay.style.left = `${x + 200}px`;  // Position 25px to the right of the icon
-    infoDisplay.style.top = `${y - 20}px`;  // Adjust for better vertical alignment
-
-    infoDisplay.style.display = 'block'; // Ensure the info box is visible
-  };
-
-  // Function to check if the icon is near a circle
-  const checkIconPosition = () => {
-    const iconRect = icon.getBoundingClientRect(); // Get the icon's bounding box
-
-    circles.forEach((circle, index) => {
-      const circleRect = circle.getBoundingClientRect(); // Get the circle's bounding box
-
-      // Check if the icon is near the circle (a threshold of distance to be considered 'near')
-      const distanceThreshold = 20;
-      if (
-        Math.abs(iconRect.left - circleRect.left) < distanceThreshold &&
-        Math.abs(iconRect.top - circleRect.top) < distanceThreshold &&
-        currentCircleIndex !== index // To prevent re-triggering if already showing info for this circle
-      ) {
-        const cityName = circle.getAttribute('data-city');
-        const cityInfo = circle.getAttribute('city-info');
-        const circlePosition = circle.getBoundingClientRect();
-
-        // Show the info when the icon reaches the circle
-        displayCityInfo(cityName, cityInfo, circlePosition.left, circlePosition.top);
-        
-        // Update the current circle index to prevent multiple triggers
-        currentCircleIndex = index;
-      }
-    });
-  };
-
-  // Check the icon position periodically (for example, on every animation frame)
-  setInterval(checkIconPosition, 100);
-
-  // Call displayCityInfo inside the event where circles are clicked
-  circles.forEach(circle => {
-    circle.addEventListener('click', event => {
-      const cityName = event.target.dataset.city;
-      const cityInfo = event.target.getAttribute('city-info');
-      const rect = event.target.getBoundingClientRect();
-      displayCityInfo(cityName, cityInfo, rect.left + window.scrollX, rect.top + window.scrollY);
-    });
-  });
-
-  const onStart = (e) => {
-    if (e.target === icon) {
-      dragging = true;
-
-      // Prevent default only when dragging starts
-      e.preventDefault();
-    }
-  };
-
-  const onMove = (e) => {
-    if (!dragging) return;
-
-    const { clientX, clientY } = e.touches ? e.touches[0] : e;
-    updateIconPosition(clientX, clientY);
-
-    // Prevent default only while dragging
-    e.preventDefault();
-  };
-
-  const onEnd = () => {
-    dragging = false;
-  };
-
-  icon.addEventListener('mousedown', onStart);
-  icon.addEventListener('touchstart', onStart, { passive: false });
-
-  document.addEventListener('mousemove', onMove);
-  document.addEventListener('touchmove', onMove, { passive: false });
-
-  document.addEventListener('mouseup', onEnd);
-  document.addEventListener('touchend', onEnd);
-
-  // Enable mouse scroll
-  document.addEventListener('wheel', (e) => {
-    if (!dragging) {
-      e.stopPropagation(); // Allow scrolling
-    }
-  });
-});
 
 document.addEventListener('DOMContentLoaded', () => {
   const dagger = document.querySelector('.second-section_dagger');
@@ -445,3 +307,55 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('mouseup', onDragEnd);
   document.addEventListener('touchend', onDragEnd);
 });
+
+const init = () => {
+      const $nav = document.querySelector('.navbar');
+      const $navButton = document.querySelector('.nav__button');
+      const $navList = document.querySelector('.nav__list');
+      const $iconLink = document.querySelector('#iconlink');
+      const listItems = $navList.querySelectorAll("li a");
+
+      // Hide the noscript popup when JavaScript is enabled
+      document.querySelector('.noscript-popup').classList.add('hidden');
+
+      $navButton.classList.remove('hidden');
+      $navList.classList.add("hidden");
+
+      const openNavigation = () => {
+        $navButton.setAttribute("aria-expanded", "true");
+        $iconLink.setAttribute("xlink:href", "#close");
+        $navList.classList.remove("hidden");
+        $nav.classList.add('navbar--fixed');
+      }
+
+      const closeNavigation = () => {
+        $navButton.setAttribute("aria-expanded", "false");
+        $iconLink.setAttribute("xlink:href", "#navicon");
+        $navList.classList.add("hidden");
+        $nav.classList.remove('navbar--fixed');
+      }
+
+      const toggleNavigation = () => {
+        const open = $navButton.getAttribute("aria-expanded");
+        open === "false" ? openNavigation() : closeNavigation();
+      }
+
+      const handleBlur = () => {
+        closeNavigation();
+      }
+
+      $navButton.addEventListener("click", toggleNavigation);
+
+      // Add event to the last item in the nav list to close the nav when tabbing out
+      listItems[listItems.length - 1].addEventListener("blur", handleBlur);
+
+      // Close the nav when the escape key is pressed
+      window.addEventListener("keyup", (e) => {
+        if (e.key === "Escape") {
+          $navButton.focus();
+          closeNavigation();
+        }
+      });
+    }
+
+    init();

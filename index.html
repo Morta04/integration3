@@ -6,48 +6,64 @@
     <title>Opportunist first, printer second</title>
     <link rel="stylesheet" href="./src/style.css">
     <link rel="stylesheet" href="./src/normalize.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/MotionPathPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
   </head>
   <body>
-    <section class="hero-image">
+    <div class="noscript-popup hidden">
+      JavaScript is disabled in your browser. Please enable JavaScript for the best experience.
+    </div>
+    <noscript>
+      <div class="noscript-popup">
+        JavaScript is disabled in your browser. Please enable JavaScript for the best experience.
+      </div>
+    </noscript>
       <header>
         <picture class="logo">
           <source sizes="(min-width: 390px) 20vw,
-              (min-width: 1512px) 20vw"
+              (min-width: 1440px) 20vw"
             srcset="./src/assets/img/logo/MPM_logo_grijs_invers_frwdit_c_scale,w_200.avif 200w,
               ./src/assets/img/logo/MPM_logo_grijs_invers_frwdit_c_scale,w_1200.avif 1200w"
             type="image/avif">
-          <img sizes="(min-width: 390px) 20vw,
-              (min-width: 1512px) 20vw"
-            srcset="./src/assets/img/logo/MPM_logo_grijs_invers_zfpzts_c_scale,w_200.webp 200w,
-              ./src/assets/img/logo/MPM_logo_grijs_invers_zfpzts_c_scale,w_944.webp 944w,
-              ./src/assets/img/logo/MPM_logo_grijs_invers_zfpzts_c_scale,w_1200.webp 1200w"
-            src="./src/assets/img/logo/MPM_logo_grijs_invers.webp" alt="logo">
+          <img src="./src/assets/img/logo/MPM_logo_grijs_invers.webp" alt="logo">
         </picture>
+        <svg style="display:none">
+          <symbol id="navicon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M21 11h-18c-0.6 0-1 0.4-1 1s0.4 1 1 1h18c0.6 0 1-0.4 1-1s-0.4-1-1-1z"></path>
+            <path d="M3 7h18c0.6 0 1-0.4 1-1s-0.4-1-1-1h-18c-0.6 0-1 0.4-1 1s0.4 1 1 1z"></path>
+            <path d="M21 17h-18c-0.6 0-1 0.4-1 1s0.4 1 1 1h18c0.6 0 1-0.4 1-1s-0.4-1-1-1z"></path>
+          </symbol>
+          <symbol id="close" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19.1,17.7L6.3,4.9c-.4-.4-1-.4-1.4,0s-.4,1,0,1.4l12.7,12.7c.4.4,1,.4,1.4,0s.4-1,0-1.4Z" />
+            <path d="M6.3,19.1l12.7-12.7c.4-.4.4-1,0-1.4s-1-.4-1.4,0l-12.7,12.7c-.4.4-.4,1,0,1.4s1,.4,1.4,0Z" />
+          </symbol>
+        </svg>
         <nav class="navbar">
-          <div class="menu-toggle" id="menu-toggle">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-          </div>
-          <ul class="navigation" id="navigation">
-            <li><a href="#first-section">Who is Plantin?</a></li>
-            <li><a href="#second-section">Struggle to keep afloat</a></li>
-            <li><a href="#third-section">Staying alive</a></li>
-            <li><a href="#fourth-section">Epilogue</a></li>
-            <li><a href="#fourth-section_title2">Other stories</a></li>
+          <button class="nav__button hidden" aria-label="Navigation menu" aria-expanded="false" aria-controls="nav__list">
+            <svg role="img" aria-labelledby="svg-title" focusable="false">
+              <title id="svg-title">Menu</title>
+              <use id="iconlink" xlink:href="#navicon"></use>
+            </svg>
+          </button>
+          <ul class="nav__list" id="nav__list">
+            <li class="nav__item"><a class="nav__link" href="#first-section">Who is Plantin?</a></li>
+            <li class="nav__item"><a class="nav__link" href="#second-section">Struggle to keep afloat</a></li>
+            <li class="nav__item"><a class="nav__link" href="#third-section">Staying alive</a></li>
+            <li class="nav__item"><a class="nav__link" href="#fourth-section">Epilogue</a></li>
+            <li class="nav__item"><a class="nav__link" href="#fourth-section_title2">Other stories</a></li>
           </ul>
         </nav>
       </header>
+      <main>
+        <section class="hero-image">
         <h1 class="hero-image_title"><a class="first-line">Opportunist first,</a> <a class="second-line">printer second</a></h1>
           <picture class="hero-image_image">
             <source sizes="(min-width: 390px) 80vw,
                 (min-width: 768px) 80vw,
-                (min-width: 1512px) 80vw" 
-              srcset="./src/assets/img/hero/heroCollage-mobile.avif" type="image/avif">
-            <img sizes="(min-width: 390px) 80vw,
-                (min-width: 768px) 80vw,
-                (min-width: 1512px) 80vw"
-              src="./src/assets/img/logo/heroCollage-mobile.png" alt="hero image">
+                (min-width: 1440px) 80vw" 
+               srcset="./src/assets/img/hero/heroCollage-mobile_m0plqm_c_scale,w_200.avif 1x" type="image/avif">
+            <img src="./src/assets/img/hero/heroCollage-mobile.png" alt="hero image">
           </picture>
         <h2 class="hero-image_intro">The story of Christophe Plantin - a 16th century printer that went against the religious wars of his time to spread
         knowledge around the world.</h2>
@@ -64,58 +80,58 @@
           <div class="arrow left" id="prev">&#10094;</div>
           <picture id="card1" class="timeline-card">
             <source sizes="(min-width: 390px) 80vw,
-             (min-width: 1512px) 80vw" 
+             (min-width: 1440px) 80vw" 
              srcset="./src/assets/img/timeline/franceCard-2_apjt7l_c_scale,w_200.avif 200w,
              ./src/assets/img/timeline/franceCard-2_apjt7l_c_scale,w_444.avif 401w" type="image/avif">
             <img class="franceCard" src="./src/assets/img/franceCollage/franceCollage-timeline.png" alt="franceCollage">
           </picture>
           <picture id="card2" class="timeline-card ">
             <source sizes="(min-width: 390px) 80vw,
-             (min-width: 1512px) 80vw" srcset="./src/assets/img/timeline/antwerpCard-2_ixnpya_c_scale,w_200.avif 200w,
+             (min-width: 1440px) 80vw" srcset="./src/assets/img/timeline/antwerpCard-2_ixnpya_c_scale,w_200.avif 200w,
              ./src/assets/img/timeline/antwerpCard-2_ixnpya_c_scale,w_432.avif 432w" type="image/avif">
             <img class="antwerpCard" src="./src/assets/img/timeline/antwerpCard.png" alt="antwerpCollage">
           </picture>
           <picture id="card3" class="timeline-card">
             <source sizes="(min-width: 390px) 80vw,
-             (min-width: 1512px) 80vw" srcset="./src/assets/img/timeline/printCard-2_glckq2_c_scale,w_200.avif 200w,
+             (min-width: 1440px) 80vw" srcset="./src/assets/img/timeline/printCard-2_glckq2_c_scale,w_200.avif 200w,
              ./src/assets/img/timeline/printCard-2_glckq2_c_scale,w_417.avif 417w" type="image/avif">
             <img class="printCard" src="./src/assets/img/timeline/printCard.png" alt="printCollage">
           </picture>
           <picture id="card4" class="timeline-card">
             <source sizes="(min-width: 390px) 80vw,
-             (min-width: 1512px) 80vw" srcset="./src/assets/img/timeline/heresyCard-2_hjzgng_c_scale,w_200.avif 200w,
+             (min-width: 1440px) 80vw" srcset="./src/assets/img/timeline/heresyCard-2_hjzgng_c_scale,w_200.avif 200w,
              ./src/assets/img/timeline/heresyCard-2_hjzgng_c_scale,w_424.avif 424w" type="image/avif">
             <img class="heresyCard" src="./src/assets/img/timeline/heresyCard.png" alt="heresyCollage">
           </picture>
           <picture id="card5" class="timeline-card">
              <source sizes="(min-width: 390px) 80vw,
-             (min-width: 1512px) 80vw" srcset="./src/assets/img/timeline/bibliaCard-2_v1otcz_c_scale,w_200.avif 200w,
+             (min-width: 1440px) 80vw" srcset="./src/assets/img/timeline/bibliaCard-2_v1otcz_c_scale,w_200.avif 200w,
              ./src/assets/img/timeline/bibliaCard-2_v1otcz_c_scale,w_381.avif 381w"
              type="image/avif">
             <img class="bibliaCard" src="./src/assets/img/timeline/bibliaCard.png" alt="bibliaCollage">
           </picture>
           <picture id="card6" class="timeline-card">
             <source sizes="(min-width: 390px) 80vw,
-             (min-width: 1512px) 80vw" srcset="./src/assets/img/timeline/councilCard-2_bd139r_c_scale,w_200.avif 200w,
+             (min-width: 1440px) 80vw" srcset="./src/assets/img/timeline/councilCard-2_bd139r_c_scale,w_200.avif 200w,
              ./src/assets/img/timeline/councilCard-2_bd139r_c_scale,w_485.avif 485w"
              type="image/avif">
             <img class="councilCard" src="./src/assets/img/timeline/councilCard.png" alt="councilCollage">
           </picture>
           <picture id="card7" class="timeline-card">
             <source sizes="(min-width: 390px) 80vw,
-             (min-width: 1512px) 80vw" srcset="./src/assets/img/timeline/leidenCard-2_vs2t8t_c_scale,w_200.avif 200w,
+             (min-width: 1440px) 80vw" srcset="./src/assets/img/timeline/leidenCard-2_vs2t8t_c_scale,w_200.avif 200w,
              ./src/assets/img/timeline/leidenCard-2_vs2t8t_c_scale,w_526.avif 526w" type="image/avif">
             <img class="leidenCard" src="./src/assets/img/timeline/leidenCard.png" alt="leidenCollage">
           </picture>
           <picture id="card8" class="timeline-card">
             <source sizes="(min-width: 390px) 80vw,
-             (min-width: 1512px) 80vw" srcset="./src/assets/img/timeline/arrivalCard-2_lttxq9_c_scale,w_200.avif 200w,
+             (min-width: 1440px) 80vw" srcset="./src/assets/img/timeline/arrivalCard-2_lttxq9_c_scale,w_200.avif 200w,
              ./src/assets/img/timeline/arrivalCard-2_lttxq9_c_scale,w_417.avif 417w" type="image/avif">
             <img class="arrivalCard" src="./src/assets/img/timeline/arrivalCard.png" alt="arrivalCollage">
           </picture>
           <picture id="card9" class="timeline-card">
             <source sizes="(min-width: 390px) 80vw,
-             (min-width: 1512px) 80vw" srcset="./src/assets/img/timeline/coffinCard-2_yqnjyu_c_scale,w_200.avif 200w,
+             (min-width: 1440px) 80vw" srcset="./src/assets/img/timeline/coffinCard-2_yqnjyu_c_scale,w_200.avif 200w,
              ./src/assets/img/timeline/coffinCard-2_yqnjyu_c_scale,w_417.avif 417w" type="image/avif">
             <img class="coffinCard" src="./src/assets/img/timeline/coffinCard.png" alt="coffinCollage">
           </picture>
@@ -125,20 +141,22 @@
       <div class="decorative-container1">
       <picture class="first-section_france">
         <source sizes="(min-width: 390px) 80vw,
-          (min-width: 1512px) 80vw" 
+          (min-width: 1440px) 80vw" 
           srcset="./src/assets/img/franceCollage/franceCollage-desktop_m00r0z_c_scale,w_200.avif 200w,
           ./src/assets/img/franceCollage/franceCollage-desktop_m00r0z_c_scale,w_399.avif 399w"
           type="image/avif">
-        <img src="./src/assets/img/franceCollage/franceCollage-desktop.png"
+        <img class="france" src="./src/assets/img/franceCollage/franceCollage-desktop.png"
           alt="franceCollage">
       </picture>
-      <svg class="path" id="ship-path-svg" width="116" height="623" viewBox="0 0 116 623" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div class="path-container">
+      <svg class="path" id="ship-path-svg" width="100%" height="100%" viewBox="0 0 955 1233" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path id="path" d="M114 3.5C82.8333 24.1667 38.5 57 20 102C-0.694763 152.339 1.50001 238 10.5 257C19.5 276 22.5 327.299 79.5 355C133 381 31.5 380 16 449C0.499994 518 20 565.5 28 582C34.4 595.2 56.5 613.5 68.5 619.5"
           stroke="#B20C3B" stroke-opacity="0.5" stroke-width="7" stroke-dasharray="40 10" />
       </svg>
+      </div>
       <picture class="interaction-ship" id="ship">
         <source sizes="(min-width: 390px) 80vw,
-        (min-width: 1512px) 80vw"
+        (min-width: 1440px) 80vw"
         srcset="./src/assets/img/antwerpCollage/Bessie-Ellen-fullsail-bluesky-560x520(1).avif 288w">
       <img class="ship" src="./src/assets/img/antwerpCollage/Bessie-Ellen-fullsail-bluesky-560x520(1).png">
       </picture>
@@ -150,40 +168,40 @@
       <picture class="first-section_antwerp">
         <source sizes="(min-width: 390px) 80vw,
           (min-width: 768px) 80vw,
-          (min-width: 1512px) 80vw"
+          (min-width: 1440px) 80vw"
           srcset="./src/assets/img/antwerpCollage/antwerpCollage-desktop_cpgmmr_c_scale,w_200.avif 200w,
           ./src/assets/img/antwerpCollage/antwerpCollage-desktop_cpgmmr_c_scale,w_441.avif 441w,
                 ./src/assets/img/antwerpCollage/antwerpCollage-desktop_cpgmmr_c_scale,w_800.avif 800w" 
           type="image/avif">
-          <img sizes="(min-width: 390px) 100vw,
-          (min-width: 768px) 100vw,
-          (min-width: 1512px) 100vw"
-        srcset="./src/assets/img/antwerpCollage/antwerpCollage-w_200.png 200w,
-                ./src/assets/img/antwerpCollage/antwerpCollage-desktop_ybyfd0_c_scale,w_383.png 383w,
-                ./src/assets/img/antwerpCollage/antwerpCollage-w_800.png 800w"
-              src="./src/assets/img/antwerpCollage/antwerpCollage-desktop.png" alt="antwerpCollage">
+          <img class="antwerp" src="./src/assets/img/antwerpCollage/antwerpCollage-desktop.png" alt="antwerpCollage">
       </picture>
       <p class="first-section_text3">Antwerp in the 16th century was a trading hub, as it is situated on a river that was suitable for ships to sail through.
       This move did pay off for Plantin but also caused him quite a few hardships</p>
       </div>
       <div class="interaction-container">
-      <picture class="map-interaction">
-        <source sizes="(min-width: 390px) 80vw,
-          (min-width: 1512px) 80vw"
-          srcset="./src/assets/img/mapPlantin/mapInteraction-2_hnunfn_c_scale,w_200.avif 200w,
-          ./src/assets/img/mapPlantin/mapInteraction-2_hnunfn_c_scale,w_491.avif 491w,"
-          type="image/avif">
-          <img src="./src/assets/img/mapPlantin/mapInteraction.png">
-      </picture>
-      <svg class="map-path" id="map-path-svg" width="52" height="68" viewBox="0 0 52 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path id="path2" d="M25 47L25.416 47.2774L25 47ZM48.5 19.5L48.0169 19.3712L48.5 19.5ZM3.27362 64.9185C4.0527 64.4091 5.14515 63.7036 6.42537 62.861L5.87558 62.0256C4.5956 62.8681 3.51304 63.5672 2.72638 64.0815L3.27362 64.9185ZM8.00046 61.8167C9.88805 60.5556 12.0434 59.0777 14.1995 57.5026L13.6096 56.6952C11.4685 58.2593 9.32544 59.7288 7.44491 60.9853L8.00046 61.8167ZM15.7184 56.3759C17.8057 54.8027 19.8397 53.1594 21.5702 51.5573L20.8908 50.8235C19.1938 52.3946 17.1885 54.0156 15.1165 55.5774L15.7184 56.3759ZM22.9408 50.2297C23.9365 49.2155 24.7869 48.2211 25.416 47.2774L24.584 46.7226C24.0018 47.5959 23.1975 48.5408 22.2272 49.5292L22.9408 50.2297ZM25.416 47.2774C25.995 46.4089 26.7378 45.4636 27.6058 44.4565L26.8483 43.8036C25.9648 44.8287 25.1938 45.808 24.584 46.7226L25.416 47.2774ZM28.8047 43.1101C30.304 41.4737 32.0453 39.7228 33.8707 37.9156L33.1672 37.205C31.3407 39.0131 29.5844 40.7788 28.0674 42.4346L28.8047 43.1101ZM35.1651 36.6374C36.8907 34.9358 38.6551 33.1992 40.3212 31.4828L39.6036 30.7863C37.9467 32.4932 36.1907 34.2217 34.463 35.9253L35.1651 36.6374ZM41.585 30.1632C43.3956 28.2446 45.0479 26.3582 46.3443 24.5805L45.5364 23.9913C44.2758 25.7198 42.6561 27.5713 40.8577 29.4769L41.585 30.1632ZM47.389 23.0451C48.1359 21.8543 48.696 20.7056 48.9831 19.6288L48.0169 19.3712C47.7651 20.3155 47.2597 21.3694 46.5419 22.5138L47.389 23.0451ZM48.9831 19.6288C49.2779 18.5234 49.4716 17.4045 49.5905 16.2908L48.5961 16.1847C48.4818 17.255 48.2965 18.3225 48.0169 19.3712L48.9831 19.6288ZM49.717 14.6058C49.8233 12.2595 49.6525 9.96646 49.4504 7.90756L48.4552 8.00522C48.656 10.051 48.821 12.2871 48.7181 14.5605L49.717 14.6058ZM49.2803 6.25304C49.152 5.02942 49.0392 3.92974 48.9996 2.97918L48.0004 3.02082C48.0416 4.00863 48.1582 5.14087 48.2858 6.35734L49.2803 6.25304Z"
-          fill="#FB5252" />
-        <circle cx="3" cy="65" r="3" fill="#FB5252" data-city="Saint-Avertin" city-info="The birth-place of Plantin" />
-        <circle cx="24" cy="49" r="3" fill="#FB5252" data-city="Paris" city-info="Did his bookbinding apprenticeship"/>
-        <circle cx="48" cy="3" r="3" fill="#FB5252" data-city="Leiden" city-info="Opened a branch of his business after running away from the Sanish Fury"/>
-        <circle cx="49" cy="19" r="3" fill="#FB5252" data-city="Antwerp" city-info="Location of main business"/>
-      </svg>
-      <img class="map-interaction_icon" src="./src/assets/img/mapPlantin/mapPlantin-mobile.png">
+        <picture class="map-interaction">
+          <source sizes="(min-width: 390px) 80vw, (min-width: 1440px) 80vw" srcset="./src/assets/img/mapPlantin/mapInteraction-2_hnunfn_c_scale,w_200.avif 200w,
+            ./src/assets/img/mapPlantin/mapInteraction-2_hnunfn_c_scale,w_491.avif 491w," type="image/avif">
+          <img class="map" src="./src/assets/img/mapPlantin/mapInteraction.png">
+        </picture>
+        <svg class="map-path" id="desktopSVG" width="212" height="283" viewBox="0 0 212 283" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path id="desktopPath"
+            d="M102.247 203L104.072 204.709L104.072 204.709L102.247 203ZM197.247 81L199.414 82.2467L199.664 81.8122L199.727 81.315L197.247 81ZM16.4996 271.061C19.1198 269.097 22.0866 266.969 25.3234 264.698L22.4522 260.605C19.1926 262.891 16.1788 265.053 13.5004 267.061L16.4996 271.061ZM29.8017 261.582C35.3793 257.728 41.4885 253.584 47.8842 249.186L45.0512 245.066C38.7074 249.428 32.5268 253.621 26.9589 257.469L29.8017 261.582ZM52.4 246.07C58.3353 241.957 64.4021 237.679 70.3265 233.321L67.3637 229.294C61.4915 233.613 55.4667 237.862 49.5523 241.96L52.4 246.07ZM74.7454 230.034C80.8078 225.47 86.6558 220.833 91.9799 216.214L88.7036 212.437C83.4917 216.958 77.7394 221.522 71.7383 226.039L74.7454 230.034ZM96.1288 212.519C98.9846 209.903 101.652 207.293 104.072 204.709L100.422 201.291C98.1056 203.766 95.5318 206.285 92.7512 208.832L96.1288 212.519ZM104.072 204.709C106.412 202.21 108.758 199.676 111.107 197.112L107.421 193.735C105.084 196.285 102.749 198.806 100.422 201.291L104.072 204.709ZM114.595 193.287C119.191 188.217 123.787 183.044 128.345 177.803L124.572 174.522C120.037 179.736 115.464 184.884 110.891 189.928L114.595 193.287ZM131.732 173.888C136.238 168.652 140.697 163.36 145.073 158.047L141.214 154.868C136.862 160.152 132.426 165.417 127.942 170.626L131.732 173.888ZM148.354 154.041C152.759 148.632 157.068 143.211 161.242 137.818L157.288 134.758C153.14 140.116 148.857 145.505 144.477 150.884L148.354 154.041ZM164.4 133.71C168.682 128.099 172.808 122.528 176.733 117.042L172.667 114.132C168.774 119.573 164.679 125.103 160.425 130.676L164.4 133.71ZM179.732 112.81C183.856 106.936 187.733 101.171 191.308 95.5726L187.094 92.8818C183.563 98.4114 179.727 104.115 175.64 109.938L179.732 112.81ZM194.078 91.1699C195.955 88.1388 197.737 85.1612 199.414 82.2467L195.08 79.7533C193.432 82.6168 191.679 85.5478 189.827 88.5372L194.078 91.1699ZM199.727 81.315C200.278 76.9783 200.725 72.8927 201.081 69.0403L196.102 68.5806C195.752 72.373 195.311 76.4018 194.767 80.6851L199.727 81.315ZM201.587 62.885C202.288 53.0913 202.357 44.946 202.02 38.0918L197.026 38.3375C197.352 44.9646 197.289 52.9067 196.6 62.5278L201.587 62.885ZM201.576 31.8667C201.119 27.0443 200.451 22.972 199.69 19.4689L194.804 20.5311C195.523 23.8365 196.16 27.7116 196.599 32.3388L201.576 31.8667Z"
+            fill="#FB5252" />
+          <g class="desktop-circle">
+            <circle cx="102.5" cy="200.5" r="14.5" data-city="Paris" city-info="Did his bookbinding apprenticeship"
+              fill="#FB5252" />
+            <circle cx="197.5" cy="80.5" r="14.5" data-city="Antwerp" city-info="Location of main business"
+              fill="#FB5252" />
+            <circle cx="193.5" cy="14.5" r="14.5" data-city="Leiden"
+              city-info="Opened a branch of his business after running away from the Spanish Fury" fill="#FB5252" />
+            <circle cx="14.5" cy="268.5" r="14.5"  data-city="Saint-Avertin" city-info="The birth-place of Plantin" fill="#FB5252" />
+          </g>
+        </svg>
+        <div id="draggable" class="draggable">
+          <img src="./src/assets/img/mapPlantin/mapPlantin-mobile.png" alt="draggable icon" />
+        </div>
       </div>
     </section>
     <section class="second-section" id="second-section">
@@ -191,8 +209,8 @@
       <div class="interaction-container_dagger">
       <picture class="second-section_plantin">
         <source sizes="(min-width: 390px) 80vw,
-          (min-width: 768px) 80vw,
-          (min-width: 1512px) 80vw"
+          (min-width: 768px) 30vw,
+          (min-width: 1440px) 30vw"
           srcset="./src/assets/img/plantinCollage/plantinCollage-desktop_e1iqct_c_scale,w_200.avif 200w,
           ./src/assets/img/plantinCollage/plantinCollage-desktop_e1iqct_c_scale,w_807.avif 807w,
           ./src/assets/img/plantinCollage/plantinCollage-desktop_e1iqct_c_scale,w_883.avif 883w"
@@ -201,15 +219,11 @@
       </picture>
       <picture class="second-section_dagger" draggable="true">
         <source sizes="(min-width: 390px) 50vw,
-          (min-width: 1512px) 50vw"
+          (min-width: 1440px) 50vw"
           srcset="./src/assets/img/dagger/dagger_hnmrez_c_scale,w_200.avif 200w,
           ./src/assets/img/dagger/dagger_hnmrez_c_scale,w_443.avif 443w"
           type="image/avif">
-        <img sizes="(min-width: 390px) 80vw,
-          (min-width: 1512px) 80vw"
-          srcset="./src/assets/img/dagger/dagger_dwijd1_c_scale,w_200.png 200w,
-          ./src/assets/img/dagger/dagger_dwijd1_c_scale,w_443.png 443w"
-          src="./src/assets/img/dagger/dagger.png">
+        <img src="./src/assets/img/dagger/dagger.png">
       </picture>
       <div class="target-area"></div>
       </div>
@@ -219,19 +233,13 @@
       his works.</p>
       <picture class="second-section_print">
         <source sizes="(min-width: 390px) 80vw,
-          (min-width: 768px) 80vw,
-          (min-width: 1512px) 80vw"
+          (min-width: 768px) 30vw,
+          (min-width: 1440px) 30vw"
           srcset="./src/assets/img/printCollage/printCollage-desktop_txllwl_c_scale,w_200.avif 200w,
           ./src/assets/img/printCollage/printCollage-desktop_txllwl_c_scale,w_547.avif 547w,
           ./src/assets/img/printCollage/printCollage-desktop_txllwl_c_scale,w_863.avif 863w"
           type="image/avif">
-        <img sizes="(min-width: 390px) 80vw,
-          (min-width: 768px) 80vw,
-          (min-width: 1512px) 80vw"
-          srcset="./src/assets/img/printCollage/printCollage-desktop_wrt3kp_c_scale,w_200.png 200w,
-          ./src/assets/img/printCollage/printCollage-desktop_wrt3kp_c_scale,w_514.png 514w,
-          ./src/assets/img/printCollage/printCollage-desktop_wrt3kp_c_scale,w_863.png 863w"
-          src="./src/assets/img/printCollage/printCollage-desktop.png">
+        <img class="print" src="./src/assets/img/printCollage/printCollage-desktop.png">
       </picture>
       <p class="second-section_text2">One of his first opportunities to prove his abilities was when the guild “House of Love”, which he was a member of,
       wanted to spread their critical views of the Catholic church. Plantin took up the job.</p>
@@ -239,72 +247,49 @@
       European countries were ruled by Catholic monarchs.</p>
       <picture class="second-section_philip">
         <source sizes="(min-width: 390px) 80vw,
-          (min-width: 768px) 80vw,
-          (min-width: 1512px) 80vw"
+          (min-width: 768px) 30vw,
+          (min-width: 1440px) 30vw"
           srcset="./src/assets/img/philipCollage/philipCollage-desktop_jj2tgx_c_scale,w_200.avif 200w,
           ./src/assets/img/philipCollage/philipCollage-desktop_jj2tgx_c_scale,w_448.avif 448w,
           ./src/assets/img/philipCollage/philipCollage-desktop_jj2tgx_c_scale,w_657.avif 657w"
           type="image/avif">
-        <img sizes="(min-width: 390px) 80vw,
-          (min-width: 768px) 80vw,
-          (min-width: 1512px) 80vw"
-          srcset="./src/assets/img/philipCollage/philipCollage-desktop_uaakpb_c_scale,w_200.png 200w,
-          ./src/assets/img/philipCollage/philipCollage-desktop_uaakpb_c_scale,w_411.png 411w,
-          ./src/assets/img/philipCollage/philipCollage-desktop_uaakpb_c_scale,w_657.png 657w"
-          src="./src/assets/mimg/phillipCollage/philipCollage-desktop.png">
+        <img class="philip" src="./src/assets/mimg/phillipCollage/philipCollage-desktop.png">
       </picture>
       <p class="second-section_text4">The situation in Antwerp was no different as it was under the rule of Philip the II of Spain - a Catholic. Not so
       surprisingly most of “House of Love” were accused of heresy in 1562.</p>
-      <p class="secons-section_text5">Some were executed, while others managed to run away. Plantin was one the lucky ones as he was in Paris at the time of
+      <p class="second-section_text5">Some were executed, while others managed to run away. Plantin was one of the lucky ones as he was in Paris at the time of
       the raid.</p>
       <picture class="second-section_heresy">
         <source sizes="(min-width: 390px) 80vw,
-          (min-width: 768px) 80vw,
-          (min-width: 1512px) 80vw"
+          (min-width: 768px) 30vw,
+          (min-width: 1440px) 30vw"
           srcset="./src/assets/img/heresyCollage/hereseyCollage-desktop_qx3dno_c_scale,w_200.avif 200w,
           ./src/assets/img/heresyCollage/hereseyCollage-desktop_qx3dno_c_scale,w_599.avif 599w,
           ./src/assets/img/heresyCollage/hereseyCollage-desktop_qx3dno_c_scale,w_836.avif 836w"
           type="image/avif">
-        <img sizes="(min-width: 390px) 80vw,
-          (min-width: 768px) 80vw,
-          (min-width: 1512px) 80vw"
-          srcset="./src/assets/img/heresyCollage/hereseyCollage-desktop_ysg2te_c_scale,w_200.png 200w,
-          ./src/assets/img/heresyCollage/hereseyCollage-desktop_ysg2te_c_scale,w_522.png 522w,
-          ./src/assets/img/heresyCollage/hereseyCollage-desktop_ysg2te_c_scale,w_836.png 836w"
-          src="./src/assets/img/heresyCollage/heresyCollage-desktop.png">
+        <img class="heresy" src="./src/assets/img/heresyCollage/heresyCollage-desktop.png">
       </picture>
       <picture class="second-section_hands">
         <source sizes="(min-width: 390px) 80vw,
-          (min-width: 768px) 80vw,
-          (min-width: 1512px) 80vw"
+          (min-width: 768px) 30vw,
+          (min-width: 1440px) 30vw"
           srcset="./src/assets/img/handsCollage/handsCollage-desktop_doifec_c_scale,w_200.avif 200w,
           ./src/assets/img/handsCollage/handsCollage-desktop_doifec_c_scale,w_631.avif 631w,
           ./src/assets/img/handsCollage/handsCollage-desktop_doifec_c_scale,w_1081.avif 1081w"
           type="image/avif">
-        <img sizes="(min-width: 390px) 80vw,
-          (min-width: 768px) 80vw,
-          (min-width: 1512px) 80vw"
-          srcset="./src/assets/img/handsCollage/handsCollage-desktop_t948lp_c_scale,w_200.png 200w,
-          ./src/assets/img/handsCollage/handsCollage-desktop_t948lp_c_scale,w_533.png 533w,
-          ./src/assets/img/handsCollage/handsCollage-desktop_t948lp_c_scale,w_1081.png"
-          src="./src/assets/img/handsCollage/handsCollage-desktop.png">
+        <img class="hands" src="./src/assets/img/handsCollage/handsCollage-desktop.png">
       </picture>
       <p class="second-section_text6">In September 1563, he returned to Antwerp, where all his furniture had, in the meantime, been sold to the public.</p>
       <p class="second-section_text7">But presumably the creditors were friends of Plantin, who managed to ensure that the government did not impound his
       property. They subsequently became his partners.</p>
       <picture class="second-section_stronghold">
         <source sizes="(min-width: 390px) 80vw,
-          (min-width: 768px) 80vw,
-          (min-width: 1512px) 80vw"
+          (min-width: 768px) 30vw,
+          (min-width: 1440px) 30vw"
           srcset="./src/assets/img/strongholdCollage/strongholdCollage-desktop_zucyho_c_scale,w_200.avif 200w,
           ./src/assets/img/strongholdCollage/strongholdCollage-desktop_zucyho_c_scale,w_516.avif 526w"
           type="image/avif">
-        <img sizes="(min-width: 390px) 80vw,
-          (min-width: 768px) 80vw,
-          (min-width: 1512px) 80vw"
-          srcset="./src/assets/img/strongholdCollage/strongholdCollage-desktop_p5h8pl_c_scale,w_200.png 200w,
-          ./src/assets/img/strongholdCollage/strongholdCollage-desktop_p5h8pl_c_scale,w_516.png 516w"
-          src="./src/assets/img/strongholCollage/strongholdCollage-desktop.png">
+        <img class="stronghold" src="./src/assets/img/strongholCollage/strongholdCollage-desktop.png">
       </picture>
       <p class="second-section_text8">Everything seemed to go well for Plantin... that is until 1567, when all of his collaborators, who were convicted
       Calvinists, fled to the Netherlands.</p>
@@ -319,18 +304,12 @@
       the Biblical texts that would be the largest polyglot Bible of the 16th century.</p>
       <picture class="third-section_biblia">
         <source sizes="(min-width: 390px) 80vw,
-          (min-width: 768px) 80vw,
-          (min-width: 1512px) 80vw"
+          (min-width: 768px) 30vw,
+          (min-width: 1440px) 30vw"
           srcset="./src/assets/img/bibliaCollage/bibliaCollage-desktop_zu8kzg_c_scale,w_200.avif 200w,
           ./src/assets/img/bibliaCollage/bibliaCollage-desktop_zu8kzg_c_scale,w_589.avif 589w"
           type="image/avif">
-        <img sizes="(min-width: 390px) 80vw,
-          (min-width: 768px) 80vw,
-          (min-width: 1512px) 80vw"
-          srcset="./src/assets/img/bibliaCollage/bibliaCollage-desktop_kerjlo_c_scale,w_200.png 200w,
-          ./src/assets/img/bibliaCollage/bibliaCollage-desktop_kerjlo_c_scale,w_354.png 354w,
-          ./src/assets/img/bibliaCollage/bibliaCollage-desktop_kerjlo_c_scale,w_589.png 589w"
-          src="./src/assets/img/bibliaCollage/bibliaCollage-desktop.png">
+        <img src="./src/assets/img/bibliaCollage/bibliaCollage-desktop.png">
       </picture>
       <p class="third-section_text2">This worked a well, so well in fact, that he received the title of King Philip II’s main printer. Ironically,  7 years
       later Plantin would receive the honour of being the printer for Antwerps city council, which was Calvinist at the time.</p>
@@ -338,35 +317,24 @@
       lives of 17000 men, women and children.</p>
       <picture class="third-section_siege">
         <source sizes="(min-width: 390px) 80vw,
-          (min-width: 768px) 80vw,
-          (min-width: 1512px) 80vw"
+          (min-width: 768px) 30vw,
+          (min-width: 1440px) 30vw"
           srcset=" ./src/assets/img/siegeCollage/siegeCollage-desktop_ui1qwq_c_scale,w_200.avif 200w,
           ./src/assets/img/siegeCollage/siegeCollage-desktop_ui1qwq_c_scale,w_531.avif 531w,
           ./src/assets/img/siegeCollage/siegeCollage-desktop_ui1qwq_c_scale,w_1352.avif 1352w"
           type="image/avif">
-      <img sizes="(min-width: 390px) 80vw,
-          (min-width: 768px) 80vw,
-          (min-width: 1512px) 80vw"
-          srcset="./src/assets/img/siegeCollage/siegeCollage-desktop_gwmlmu_c_scale,w_200.png 200w,
-          ./src/assets/img/siegeCollage/siegeCollage-desktop_gwmlmu_c_scale,w_464.png 464w,
-          ./src/assets/img/siegeCollage/siegeCollage-desktop_gwmlmu_c_scale,w_1352.png 1352w"
-      src="./src/assets/img/siegeCollage/siegeCollage-desktop.png">
+      <img src="./src/assets/img/siegeCollage/siegeCollage-desktop.png">
       </picture>
       <p class="third-section_text4">Plantin was caught between the different parties: to the outside world, he remained a Catholic, yet he also printed
       anti-Spanish pamphlets and works.</p>
       <picture class="third-section_leiden">
         <source sizes="(min-width: 390px) 80vw,
-          (min-width: 1512px) 80vw"
+          (min-width: 1440px) 30vw"
           srcset="./src/assets/img/leidenCollage/leidenCollage-desktop_pa6ped_c_scale,w_200.avif 200w,
           ./src/assets/img/leidenCollage/leidenCollage-desktop_pa6ped_c_scale,w_491.avif 491w,
           ./src/assets/img/leidenCollage/leidenCollage-desktop_pa6ped_c_scale,w_589.avif 589w"
           type="image/avif">
-        <img sizes="(min-width: 390px) 80vw,
-          (min-width: 1512px) 80vw"
-          srcset="./src/assets/img/leidenCollage/leidenCollage-desktop_owtgtt_c_scale,w_200.png 200w,
-          ./src/assets/img/leidenCollage/leidenCollage-desktop_owtgtt_c_scale,w_388.png 388w,
-          ./src/assets/img/leidenCollage/leidenCollage-desktop_pa6ped_c_scale,w_589.avif 589w"
-          src="./src/assets/img/leidenCollage/leidenCollage-desktop.png">
+        <img src="./src/assets/img/leidenCollage/leidenCollage-desktop.png">
       </picture>
       <p class="third-section_text4">The Spanish attempted to take over Antwerp, so Plantin tried to run to Leiden, where he worked for Leiden university.
       But he didn’t stay for too long and returned to Antwerp in 1586.</p>
@@ -379,32 +347,23 @@
       Edward Moretus, who sold the printing house to the city of Antwerp.</h2>
       <picture class="fourth-section_lilies">
         <source sizes="(min-width: 390px) 80vw,
-          (min-width: 1512px) 80vw"
+          (min-width: 1440px) 30vw"
           srcset="./src/assets/img/liliesCollage/liliesCollage-desktop_ctrt2j_c_scale,w_200.avif 200w,
           ./src/assets/img/liliesCollage/liliesCollage-desktop_ctrt2j_c_scale,w_358.avif 358w,
           ./src/assets/img/liliesCollage/liliesCollage-desktop_ctrt2j_c_scale,w_563.avif 563w"
           type="image/avif">
-        <img sizes="(min-width: 390px) 80vw,
-          (min-width: 1512px) 80vw"
-          srcset="./src/assets/img/liliesCollage/liliesCollage-desktop_u4syuz_c_scale,w_200.png 200w,
-          ./src/assets/img/liliesCollage/liliesCollage-desktop_u4syuz_c_scale,w_330.png 330w,
-          ./src/assets/img/liliesCollage/liliesCollage-desktop_u4syuz_c_scale,w_563.png 563w"
-          src="./src/assets/img/liliesCollage/liliesCollage-desktop.png">
+        <img src="./src/assets/img/liliesCollage/liliesCollage-desktop.png">
       </picture>
       <p class="fourth-section_text2">The building has now been converted into a museum.</p>
       <button class="button-museum">Visit the museum</button>
       <h1 class="fourth-section_title2" id="fourth-section_title2">Other stories</h1>
       <picture class="fourth-section_moretus">
         <source sizes="(min-width: 390px) 80vw,
-          (min-width: 1512px) 80vw"
+          (min-width: 1440px) 30vw"
           srcset="./src/assets/img/moretusCollage/moretusCollage-dekstop_h77ht2_c_scale,w_200.avif 200w,
           ./src/assets/img/moretusCollage/moretusCollage-dekstop_h77ht2_c_scale,w_486.avif 486w"
           type="image/avif">
-        <img sizes="(min-width: 390px) 80vw,
-          (min-width: 1512px) 80vw"
-          srcset="./src/assets/img/moretusCollage/moretusCollage-dekstop_bjujqf_c_scale,w_200.png 200w,
-          ./src/assets/img/moretusCollage/moretusCollage-dekstop_h77ht2_c_scale,w_486.avif 486w"
-          src="./src/assets/img/moretusCollage/moretusCollage-dekstop.png">
+        <img src="./src/assets/img/moretusCollage/moretusCollage-dekstop.png">
       </picture>
       <p class="fourth-section_text3">Jan Moretus - heir of Christophe Plantin</p>
       <button class="button-newsletter">Subscribe to newsletter</button>
@@ -459,5 +418,6 @@
         <li class="manage">Manage cookies</li>
       </ul>
     </footer>
+    </main>
     <script type="module" src="/src/main.js"></script>
   </body>
